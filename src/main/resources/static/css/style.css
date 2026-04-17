@@ -92,3 +92,87 @@ a {
     color: #ff3b3b;
     margin-bottom: 10px;
 }
+
+.section {
+    padding: 60px 50px;
+}
+
+.section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+}
+
+.search-bar input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filters button {
+    background: #222;
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background: #ff3b3b;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.exercise-card, .routine-card, .trainer-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.exercise-card img, .routine-card img, .trainer-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.card-button, .add-button {
+    display: inline-block;
+    background: #ff3b3b;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.exercise-button, .routine-button {
+    margin-top: 30px;
+    text-align: center;
+}
