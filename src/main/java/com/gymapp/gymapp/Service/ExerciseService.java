@@ -39,4 +39,9 @@ public class ExerciseService {
         }
         return null;
     }
+
+    public Exercise deleteExercise(String id) {
+        return exercises.remove(id);
+    }
+
 }
