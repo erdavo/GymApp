@@ -4,11 +4,9 @@ package com.gymapp.gymapp.Controller;
 
 import com.gymapp.gymapp.Model.Exercise;
 import com.gymapp.gymapp.Service.ExerciseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -21,13 +19,18 @@ public class ExerciseController {
     }
 
     @GetMapping("/api/exercises")
-    public List<Exercise> getAllExercises() {
+    public Collection<Exercise> getAllExercises() {
         return exerciseService.getAllExercises();
     }
 
     @PostMapping("/api/exercises")
     public Exercise createExercise(@RequestBody Exercise exercise) {
         return exerciseService.createExercise(exercise);
+    }
+
+    @PutMapping("/api/exercises/{id}")
+    public Exercise updateExercise(@PathVariable String id, @RequestBody Exercise updatedExercise) {
+        return exerciseService.updateExercise(id, updatedExercise);
     }
 
 }
