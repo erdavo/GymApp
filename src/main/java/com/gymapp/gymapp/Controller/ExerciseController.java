@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Map;
 
 
 @RestController
@@ -40,6 +41,17 @@ public class ExerciseController {
 
         if (exercise != null) {
             exerciseService.deleteExercise(id);
+            return ResponseEntity.ok(exercise);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/api/exercises/{id}")
+    public ResponseEntity<Exercise> patchExercise(@PathVariable String id, @RequestBody Map<String, Object> updates) {
+        Exercise exercise = exerciseService.patchExercise(id, updates);
+
+        if (exercise != null) {
             return ResponseEntity.ok(exercise);
         } else {
             return ResponseEntity.notFound().build();

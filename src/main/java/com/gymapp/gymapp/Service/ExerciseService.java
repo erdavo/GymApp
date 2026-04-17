@@ -44,4 +44,26 @@ public class ExerciseService {
         return exercises.remove(id);
     }
 
+    public Exercise patchExercise(String id, Map<String, Object> updates) {
+        Exercise exercise = exercises.get(id);
+
+        if (exercise == null) {
+            return null;
+        }
+
+        if (updates.containsKey("name")) {
+            exercise.setName((String) updates.get("name"));
+        }
+        if (updates.containsKey("description")) {
+            exercise.setDescription((String) updates.get("description"));
+        }
+        if (updates.containsKey("muscleGroup")) {
+            exercise.setMuscleGroup((String) updates.get("muscleGroup"));
+        }
+        if (updates.containsKey("difficulty")) {
+            exercise.setDifficulty((String) updates.get("difficulty"));
+        }
+
+        return exercise;
+    }
 }
