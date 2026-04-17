@@ -25,6 +25,17 @@ public class ExerciseController {
         return exerciseService.getAllExercises();
     }
 
+    @GetMapping("/api/exercises/{id}")
+    public ResponseEntity<Exercise> getExerciseById(@PathVariable String id) {
+        Exercise exercise = exerciseService.getExerciseById(id);
+
+        if (exercise != null) {
+            return ResponseEntity.ok(exercise);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/api/exercises")
     public Exercise createExercise(@RequestBody Exercise exercise) {
         return exerciseService.createExercise(exercise);
