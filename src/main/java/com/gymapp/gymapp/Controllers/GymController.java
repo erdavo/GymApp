@@ -1,4 +1,4 @@
-package com.gymapp.gymapp;
+package com.gymapp.gymapp.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
