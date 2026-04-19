@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ExerciseService {
@@ -13,7 +14,7 @@ public class ExerciseService {
     private final Map<String, Exercise> exercises;
 
     public ExerciseService() {
-        exercises = new HashMap<>();
+        exercises = new ConcurrentHashMap<>();
         exercises.put("1", new Exercise("1", "Push Up", "Chest exercise", "Chest", "Medium"));
         exercises.put("2", new Exercise("2", "Squat", "Leg exercise", "Legs", "Easy"));
     }

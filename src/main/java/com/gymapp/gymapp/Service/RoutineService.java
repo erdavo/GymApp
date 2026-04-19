@@ -5,6 +5,7 @@ import com.gymapp.gymapp.Model.Routine;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.HashMap;
 import java.util.Collection;
 
@@ -13,10 +14,10 @@ public class RoutineService {
     private final Map<String, Routine> routines;
 
     public RoutineService() {
-        routines = new HashMap<>();
-        routines.put("1", new Routine("r1", "PPL", "Rutina para flacos", "Medio"));
-        routines.put("2", new Routine("r2", "Full body", "Rutina para flaquisimos", "Facil"));
-        routines.put("3", new Routine("r3", "Upper-Lower", "Rutina para tios fuertes", "Alto"));
+        routines = new ConcurrentHashMap<>();
+        routines.put("1", new Routine("r1", "PPL", "Skinny routines", "Medium"));
+        routines.put("2", new Routine("r2", "Full body", "To skinny routine", "Too easy"));
+        routines.put("3", new Routine("r3", "Upper-Lower", "Light weight baibe routine", "Too hard"));
     }
 
     public Collection<Routine> getAllRoutines() {
