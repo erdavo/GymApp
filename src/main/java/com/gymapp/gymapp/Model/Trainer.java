@@ -11,7 +11,6 @@ public class Trainer {
     public Trainer() {
         this.imageUrl = "/images/default-trainer.png";
     }
-
     public Trainer(Integer id, String name, String email, String description, String imageUrl) {
         this.id = id;
         this.name = name;

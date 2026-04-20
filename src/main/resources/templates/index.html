@@ -152,10 +152,26 @@
                 <div class="card-content">
                     <h3>{{name}}</h3>
                     <p>{{description}}</p>
-                    <a href="" class="card-button">View Profile</a>
+                    
+                    <div class="card-actions">
+                        <a href="" class="card-button">View Profile</a>
+                        
+                        <a href="/editTrainer/{{id}}" class="card-button btn-edit">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        
+                        <a href="/trainers/delete/{{id}}" class="card-button btn-delete" 
+                           onclick="return confirm('Are you sure you want to remove this trainer?')">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </div>
                 </div>
             </div>
             {{/trainers}}
+        </div>
+
+        <div class="trainer-button">
+            <a href="/addTrainer" class="add-button">Add Trainer</a>
         </div>
     </section>
 

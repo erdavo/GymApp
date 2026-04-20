@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymApp - Add Trainer</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="/">Gym<span>App</span></a></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/#popular-exercises">Exercises</a></li>
+                <li><a href="/#featured-routines">Routines</a></li>
+                <li><a href="/#personal-trainers">Personal Trainers</a></li>
+                <li><a href="/#bmr-calculator">BMR Calculator</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="routine-page">
+        <div class="routine-form-wrapper">
+            <div class="form-container">
+                <div class="form-header">
+                    <p class="form-tag">GymApp trainer network</p>
+                    <h2>ADD NEW <span class="highlight">TRAINER</span></h2>
+                    <p>Register a new professional guide. A default profile image will be assigned.</p>
+                </div>
+
+                <form action="/trainers/new" method="POST" class="gym-form">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="id">Trainer ID</label>
+                            <input type="number" id="id" name="id" placeholder="Ex: 101" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Ex: John Doe" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Contact Email</label>
+                        <input type="email" id="email" name="email" placeholder="trainer@gymapp.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Profile Description</label>
+                        <textarea id="description" name="description" rows="5" 
+                            placeholder="Ex: Madrid, 5 years experience in bodybuilding..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">REGISTER TRAINER</button>
+                        <a href="/#personal-trainers" class="cancel-link">Back to home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
