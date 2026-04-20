@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymApp - Edit Exercise</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="/">Gym<span>App</span></a></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/#popular-exercises">Exercises</a></li>
+                <li><a href="/#featured-routines">Routines</a></li>
+                <li><a href="/#personal-trainers">Personal Trainers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="routine-page">
+        <div class="routine-form-wrapper">
+            <div class="form-container">
+                <div class="form-header">
+                    <p class="form-tag">Exercise Editor</p>
+                    <h2>EDIT <span class="highlight">{{exercise.name}}</span></h2>
+                    <p>Modify the exercise details in the database.</p>
+                </div>
+
+                <form action="/exercises/update" method="POST" class="gym-form">
+                    <input type="hidden" name="id" value="{{exercise.id}}">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" value="{{exercise.name}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="muscleGroup">Muscle Group</label>
+                            <input type="text" id="muscleGroup" name="muscleGroup" value="{{exercise.muscleGroup}}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="5">{{exercise.description}}</textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty (Current: {{exercise.difficulty}})</label>
+                            <select id="difficulty" name="difficulty" required>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">UPDATE EXERCISE</button>
+                        <a href="/" class="cancel-link">Cancel and back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
