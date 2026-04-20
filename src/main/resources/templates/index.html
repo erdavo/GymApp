@@ -28,7 +28,6 @@
         </div>
 
     </section>
-
     <section class="features">
         <div class="feature-card">
             <h3>Search Exercises</h3>
@@ -122,22 +121,37 @@
                 title="The Mifflin-St Jeor formula estimates your basal metabolic rate."></i></h2>
 
         <div class="bmi-calculator">
-            <p> Calculate your Basal Metabolic Rate to track your progress.</p>
+            <p>Calculate your Basal Metabolic Rate to track your progress.</p>
+
             <div class="calculator-inputs">
-                <select id="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-                <input type="number" id="age" placeholder="Age">
-                <input type="number" id="weight" placeholder="Weight (kg)">
-                <input type="number" id="height" placeholder="Height (cm)">
+                <div class="input-group full-line">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-line">
+                    <label for="age">Age (years)</label>
+                    <input type="number" id="age" placeholder="25">
+                </div>
+
+                <div class="input-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" placeholder="70">
+                </div>
+
+                <div class="input-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" placeholder="175">
+                </div>
 
                 <button type="button" onclick="calculateBMR()" class="add-button">CALCULATE BMR</button>
             </div>
-            <div id="bmr-result" class="result-display"></div>
 
+            <div id="bmr-result" class="result-display" aria-live="polite"></div>
         </div>
-
     </section>
 
     <footer class="footer">
