@@ -59,6 +59,9 @@ public class RoutineService {
             if (updates.containsKey("difficulty")) {
                 routine.setDifficulty((String) updates.get("difficulty"));
             }
+            if (updates.containsKey("imageUrl")) {
+                routine.setImageUrl((String) updates.get("imageUrl"));
+            }
             return routine;
         }
         return null;
