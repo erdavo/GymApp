@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymApp - Edit Trainer</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="/">Gym<span>App</span></a></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/#popular-exercises">Exercises</a></li>
+                <li><a href="/#featured-routines">Routines</a></li>
+                <li><a href="/#personal-trainers">Personal Trainers</a></li>
+                <li><a href="/#bmr-calculator">BMR Calculator</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="routine-page">
+        <div class="form-container">
+            <div class="form-header" style="margin-bottom: 30px; text-align: center;">
+                <p class="form-tag" style="color: #ff3b3b; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: bold;">Professional Profile</p>
+                <h2 style="font-size: 2.2rem; margin-top: 10px;">EDIT <span class="highlight" style="color: #ff3b3b;">{{trainer.name}}</span></h2>
+            </div>
+
+            <form action="/trainers/update" method="POST" class="gym-form">
+                <input type="hidden" name="_method" value="patch">
+                <input type="hidden" name="id" value="{{trainer.id}}">
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label for="name" style="display: block; margin-bottom: 8px; color: #ccc; font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Full Name</label>
+                        <input type="text" id="name" name="name" value="{{trainer.name}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" style="display: block; margin-bottom: 8px; color: #ccc; font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Email Address</label>
+                        <input type="email" id="email" name="email" value="{{trainer.email}}" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label for="description" style="display: block; margin-bottom: 8px; color: #ccc; font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Profile Biography</label>
+                    <textarea id="description" name="description" rows="5">{{trainer.description}}</textarea>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+                    <button type="submit" class="add-button">Save Changes</button>
+                    <a href="/#personal-trainers" class="card-button" style="background: #333; align-self: center;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 GymApp | Professional Trainer Management</p>
+    </footer>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="/js/buttonBackToTop.js"></script>
+</body>
+
+</html>
