@@ -8,14 +8,22 @@ public class Trainer {
     private String name;
     private String email;
     private String specialty;
+    private String imageUrl;
     // private List<Routine> routines; // 1:N con Routine
 
-    public Trainer(String id, String name, String email, String specialty) {
+    public Trainer(String id, String name, String email, String specialty, String imageUrl) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.specialty = specialty;
+        this.imageUrl = (imageUrl == null || imageUrl.isBlank())
+                ? "/images/default-trainer.jpg"
+                : imageUrl;
         // this.routines = new ArrayList<>();
+    }
+
+    public Trainer(String id, String name, String email, String specialty) {
+        this(id, name, email, specialty, "/images/default-exercise.jpg");
     }
 
     public String getId() {
@@ -48,6 +56,16 @@ public class Trainer {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = (imageUrl == null || imageUrl.isBlank())
+                ? "/images/default-exercise.jpg"
+                : imageUrl;
     }
 
     /*
