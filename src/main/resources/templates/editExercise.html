@@ -16,6 +16,7 @@
                 <li><a href="/#popular-exercises">Exercises</a></li>
                 <li><a href="/#featured-routines">Routines</a></li>
                 <li><a href="/#personal-trainers">Personal Trainers</a></li>
+                <li><a href="/#bmr-calculator">BMR Calculator</a></li>
             </ul>
         </nav>
     </header>
@@ -30,6 +31,7 @@
                 </div>
 
                 <form action="/exercises/update" method="POST" class="gym-form">
+                    <input type="hidden" name="_method" value="patch">
                     <input type="hidden" name="id" value="{{exercise.id}}">
 
                     <div class="form-row">

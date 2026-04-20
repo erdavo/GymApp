@@ -30,6 +30,7 @@
                 </div>
 
                 <form action="/routines/update" method="POST" class="gym-form">
+                    <input type="hidden" name="_method" value="patch">
                     <input type="hidden" name="id" value="{{routine.id}}">
 
                     <div class="form-row">
