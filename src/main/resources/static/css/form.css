@@ -144,22 +144,43 @@
     color: #ff3b3b;
 }
 
-@media (max-width: 900px) {
-    .routine-page {
-        padding: 35px 18px;
-    }
-
-    .form-container {
-        padding: 30px 22px;
-        border-radius: 18px;
-    }
-
-    .form-header h2 {
-        font-size: 1.9rem;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
+/* PARA LA PRACTICA 2
+.exercise-selector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 6px;
 }
+
+.exercise-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #191919;
+    border: 1px solid #303030;
+    border-radius: 14px;
+    padding: 14px 16px;
+    color: #f2f2f2;
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.exercise-option:hover {
+    border-color: #ff3b3b;
+    background: #1f1f1f;
+    transform: translateY(-1px);
+}
+
+.exercise-option input[type="checkbox"] {
+    accent-color: #ff3b3b;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.exercise-option span {
+    color: #d9d9d9;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+*/

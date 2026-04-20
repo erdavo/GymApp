@@ -26,7 +26,7 @@ public class ExerciseController {
     }
 
     @GetMapping("/api/exercises/{id}")
-    public ResponseEntity<Exercise> getExerciseById(@PathVariable String id) {
+    public ResponseEntity<Exercise> getExerciseById(@PathVariable Integer id) {
         Exercise exercise = exerciseService.getExerciseById(id);
 
         if (exercise != null) {
@@ -42,12 +42,12 @@ public class ExerciseController {
     }
 
     @PutMapping("/api/exercises/{id}")
-    public Exercise updateExercise(@PathVariable String id, @RequestBody Exercise updatedExercise) {
+    public Exercise updateExercise(@PathVariable Integer id, @RequestBody Exercise updatedExercise) {
         return exerciseService.updateExercise(id, updatedExercise);
     }
 
     @DeleteMapping("/api/exercises/{id}")
-    public ResponseEntity<Exercise> deleteExercise(@PathVariable String id) {
+    public ResponseEntity<Exercise> deleteExercise(@PathVariable Integer id) {
         Exercise exercise = exerciseService.getExerciseById(id);
 
         if (exercise != null) {
@@ -59,7 +59,7 @@ public class ExerciseController {
     }
 
     @PatchMapping("/api/exercises/{id}")
-    public ResponseEntity<Exercise> patchExercise(@PathVariable String id, @RequestBody Map<String, Object> updates) {
+    public ResponseEntity<Exercise> patchExercise(@PathVariable Integer id, @RequestBody Map<String, Object> updates) {
         Exercise exercise = exerciseService.patchExercise(id, updates);
 
         if (exercise != null) {

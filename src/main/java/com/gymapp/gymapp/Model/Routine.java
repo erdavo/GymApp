@@ -1,14 +1,18 @@
 package com.gymapp.gymapp.Model;
 
 public class Routine {
-    private String id;
+    private Integer id;
     private String name;
     private String description;
     private String difficulty;
     private String imageUrl;
     // private List<Exercise> exercises;
 
-    public Routine(String id, String name, String description, String difficulty, String imageUrl ) {
+    public Routine() {
+        this.imageUrl = "/images/default-routine.png";
+    }
+
+    public Routine(Integer id, String name, String description, String difficulty, String imageUrl ) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -19,15 +23,15 @@ public class Routine {
         // this.exercises = exercises;
     }
 
-    public Routine(String id, String name, String description, String difficulty) {
+    public Routine(Integer id, String name, String description, String difficulty) {
         this(id, name, description, difficulty, "/images/default-routine.png");
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

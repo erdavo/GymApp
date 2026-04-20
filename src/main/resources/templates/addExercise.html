@@ -1,89 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymApp - Add Exercise</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/form.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
-    <header class="navbar">
-        <div class="logo"><a href="/">Gym<span>App</span></a></div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="/#popular-exercises">Exercises</a></li>
-                <li><a href="/#featured-routines">Routines</a></li>
-                <li><a href="/#personal-trainers">Personal Trainers</a></li>
-                <li><a href="/#bmr-calculator">BMR Calculator</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="navbar">
+    <div class="logo"><a href="/">Gym<span>App</span></a></div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/#popular-exercises">Exercises</a></li>
+            <li><a href="/#featured-routines">Routines</a></li>
+            <li><a href="/#personal-trainers">Personal Trainers</a></li>
+            <li><a href="/#bmr-calculator">BMR Calculator</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <section class="routine-page">
-        <div class="routine-form-wrapper">
-            <div class="form-container">
-                <div class="form-header">
-                    <p class="form-tag">GymApp exercise database</p>
-                    <h2>ADD NEW <span class="highlight">EXERCISE</span></h2>
-                    <p>Register a new movement with its technical specifications.</p>
+<section class="routine-page">
+    <div class="routine-form-wrapper">
+        <div class="form-container">
+            <div class="form-header">
+                <p class="form-tag">GymApp exercise database</p>
+                <h2>ADD NEW <span class="highlight">EXERCISE</span></h2>
+                <p>Register a new movement with its technical specifications.</p>
+            </div>
+
+            <form action="/exercises/new" method="POST" class="gym-form">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Ex: Bench Press" required>
                 </div>
 
-                <form action="/exercises/new" method="POST" class="gym-form">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" placeholder="Explain the proper technique and execution..."></textarea>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="id">Exercise ID</label>
-                            <input type="text" id="id" name="id" placeholder="Ex: EXE-001" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Ex: Bench Press" required>
-                        </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="muscleGroup">Muscle Group</label>
+                        <select id="muscleGroup" name="muscleGroup" required>
+                            <option value="" disabled selected>Select muscle group...</option>
+                            <option value="Chest">Chest</option>
+                            <option value="Back">Back</option>
+                            <option value="Legs">Legs</option>
+                            <option value="Arms">Arms</option>
+                            <option value="Abs">Abs</option>
+                            <option value="Shoulders">Shoulders</option>
+                            <option value="Cardio">Cardio</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="5" placeholder="Explain the proper technique and execution..."></textarea>
+                        <label for="difficulty">Difficulty</label>
+                        <select id="difficulty" name="difficulty" required>
+                            <option value="" disabled selected>Select difficulty...</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="muscleGroup">Muscle Group</label>
-                            <select id="muscleGroup" name="muscleGroup" required>
-                                <option value="" disabled selected>Select muscle group...</option>
-                                <option value="Chest">Chest</option>
-                                <option value="Back">Back</option>
-                                <option value="Legs">Legs</option>
-                                <option value="Arms">Arms</option>
-                                <option value="Abs">Abs</option>
-                                <option value="Shoulders">Shoulders</option>
-                                <option value="Cardio">Cardio</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="difficulty">Difficulty</label>
-                            <select id="difficulty" name="difficulty" required>
-                                <option value="" disabled selected>Select difficulty...</option>
-                                <option value="Beginner">Beginner</option>
-                                <option value="Intermediate">Intermediate</option>
-                                <option value="Advanced">Advanced</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="add-button">SAVE EXERCISE</button>
-                        <a href="/" class="cancel-link">Back to home</a>
-                    </div>
-                </form>
-            </div>
+                <div class="form-actions">
+                    <button type="submit" class="add-button">SAVE EXERCISE</button>
+                    <a href="/" class="cancel-link">Back to home</a>
+                </div>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 </html>

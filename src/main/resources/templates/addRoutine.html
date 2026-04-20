@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymApp</title>
+    <title>GymApp - Add Routine</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/form.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
 <header class="navbar">
     <div class="logo"><a href="/">Gym<span>App</span></a></div>
@@ -27,23 +24,16 @@
     <div class="routine-form-wrapper">
         <div class="form-container">
             <div class="form-header">
-                <p class="form-tag">GymApp routine manager</p>
+                <p class="form-tag">GymApp routine database</p>
                 <h2>ADD NEW <span class="highlight">ROUTINE</span></h2>
-                <p>Fill in the fields to register a new routine in the system.</p>
+                <p>Register a new routine with its main specifications.</p>
             </div>
 
             <form action="/routines/new" method="POST" class="gym-form">
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="id">Routine ID</label>
-                        <input type="text" id="id" name="id" placeholder="Ex: ROU-001" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Ex: Full Body Routine" required>
-                    </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Ex: Full Body Routine" required>
                 </div>
 
                 <div class="form-group">
@@ -51,22 +41,29 @@
                     <textarea id="description" name="description" rows="5" placeholder="Explain the routine..."></textarea>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="difficulty">Difficulty</label>
-                        <select id="difficulty" name="difficulty" required>
-                            <option value="" disabled selected>Select difficulty...</option>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Advanced">Advanced</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="difficulty">Difficulty</label>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="" disabled selected>Select difficulty...</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
 
-                    <div class="form-group">
-                        <label for="imageUrl">Image URL</label>
-                        <input type="text" id="imageUrl" name="imageUrl" placeholder="Optional: /images/routine.png">
+                <!-- PARA LA PRACTICA 2
+                <div class="form-group">
+                    <label>Select exercises</label>
+                    <div class="exercise-selector">
+                        {{#exercises}}
+                        <label class="exercise-option">
+                            <input type="checkbox" name="exerciseIds" value="{{id}}">
+                            <span>{{name}} - {{muscleGroup}} - {{difficulty}}</span>
+                        </label>
+                        {{/exercises}}
                     </div>
                 </div>
+                -->
 
                 <div class="form-actions">
                     <button type="submit" class="add-button">SAVE ROUTINE</button>

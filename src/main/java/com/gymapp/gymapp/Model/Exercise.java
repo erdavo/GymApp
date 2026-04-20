@@ -1,15 +1,18 @@
 package com.gymapp.gymapp.Model;
 
 public class Exercise {
-    private String id;
+    private Integer id;
     private String name;
     private String description;
     private String muscleGroup;
     private String difficulty;
     private String imageUrl;
 
+    public Exercise() {
+        this.imageUrl = "/images/default-exercise.png";
+    }
 
-    public Exercise(String id, String name, String description, String muscleGroup, String difficulty, String imageUrl) {
+    public Exercise(Integer id, String name, String description, String muscleGroup, String difficulty, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -21,15 +24,15 @@ public class Exercise {
     }
 
 
-    public Exercise(String id, String name, String description, String muscleGroup, String difficulty) {
+    public Exercise(Integer id, String name, String description, String muscleGroup, String difficulty) {
         this(id, name, description, muscleGroup, difficulty, "/images/default-exercise.png");
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

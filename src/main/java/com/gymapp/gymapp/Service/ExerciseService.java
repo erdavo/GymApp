@@ -10,13 +10,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class ExerciseService {
 
-    private final Map<String, Exercise> exercises;
+    private final Map<Integer, Exercise> exercises;
+    private int nextId = 4;
 
     public ExerciseService() {
         exercises = new ConcurrentHashMap<>();
 
-        exercises.put("1", new Exercise(
-                "1",
+        exercises.put(1, new Exercise(
+                1,
                 "Push Up",
                 "Chest exercise",
                 "Chest",
@@ -24,16 +25,17 @@ public class ExerciseService {
                 "/images/push_up_exercise.jpg"
         ));
 
-        exercises.put("2", new Exercise(
-                "2",
+        exercises.put(2, new Exercise(
+                2,
                 "Squat",
                 "Leg exercise",
                 "Legs",
                 "Easy",
                 "/images/squad_exercise.jpg"
         ));
-        exercises.put("3", new Exercise(
-                "3",
+
+        exercises.put(3, new Exercise(
+                3,
                 "Bench press",
                 "Chest exercise",
                 "Chest",
@@ -46,31 +48,31 @@ public class ExerciseService {
         return exercises.values();
     }
 
-    public Exercise getExerciseById(String id) {
+    public Exercise getExerciseById(Integer id) {
         return exercises.get(id);
     }
 
     public Exercise createExercise(Exercise exercise) {
-        exercises.put(exercise.getId(), exercise);
+        exercise.setId(nextId);
+        exercises.put(nextId, exercise);
+        nextId++;
         return exercise;
     }
 
-    public Exercise updateExercise(String id, Exercise updatedExercise) {
+    public Exercise updateExercise(Integer id, Exercise updatedExercise) {
         if (exercises.containsKey(id)) {
             updatedExercise.setId(id);
-
-
             exercises.put(id, updatedExercise);
             return updatedExercise;
         }
         return null;
     }
 
-    public Exercise deleteExercise(String id) {
+    public Exercise deleteExercise(Integer id) {
         return exercises.remove(id);
     }
 
-    public Exercise patchExercise(String id, Map<String, Object> updates) {
+    public Exercise patchExercise(Integer id, Map<String, Object> updates) {
         Exercise exercise = exercises.get(id);
 
         if (exercise == null) {

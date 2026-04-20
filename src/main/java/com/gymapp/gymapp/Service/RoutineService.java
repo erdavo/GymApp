@@ -1,39 +1,41 @@
 package com.gymapp.gymapp.Service;
 
-// 
 import com.gymapp.gymapp.Model.Routine;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.HashMap;
-import java.util.Collection;
+
 
 @Service
 public class RoutineService {
-    private final Map<String, Routine> routines;
+    private final Map<Integer, Routine> routines;
+    private int nextId = 4;
 
     public RoutineService() {
         routines = new ConcurrentHashMap<>();
-        routines.put("1", new Routine("r1", "PPL", "Skinny routines", "Medium"));
-        routines.put("2", new Routine("r2", "Full body", "To skinny routine", "Too easy"));
-        routines.put("3", new Routine("r3", "Upper-Lower", "Light weight baibe routine", "Too hard"));
+        routines.put(1, new Routine(1, "PPL", "Skinny routines", "Medium"));
+        routines.put(2, new Routine(2, "Full body", "To skinny routine", "Too easy"));
+        routines.put(3, new Routine(3, "Upper-Lower", "Light weight baibe routine", "Too hard"));
     }
 
     public Collection<Routine> getAllRoutines() {
         return routines.values();
     }
 
-    public Routine getRoutineById(String id) {
+    public Routine getRoutineById(Integer id) {
         return routines.get(id);
     }
-    
+
     public Routine createRoutine(Routine routine) {
-        routines.put(routine.getId(), routine);
+        routine.setId(nextId);
+        routines.put(nextId, routine);
+        nextId++;
         return routine;
     }
 
-    public Routine updateRoutine(String id, Routine updatedRoutine) {
+    public Routine updateRoutine(Integer id, Routine updatedRoutine) {
         if (routines.containsKey(id)) {
             updatedRoutine.setId(id);
             routines.put(id, updatedRoutine);
@@ -42,13 +44,13 @@ public class RoutineService {
         return null;
     }
 
-    public Routine deleteRoutine(String id) {
+    public Routine deleteRoutine(Integer id) {
         return routines.remove(id);
     }
 
-    public Routine patchRoutine(String id, Map<String, Object> updates) {
+    public Routine patchRoutine(Integer id, Map<String, Object> updates) {
         Routine routine = routines.get(id);
-        
+
         if (routine != null) {
             if (updates.containsKey("name")) {
                 routine.setName((String) updates.get("name"));
@@ -66,5 +68,4 @@ public class RoutineService {
         }
         return null;
     }
-
 }
