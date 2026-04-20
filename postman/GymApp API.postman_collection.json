@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "c25f7654-8c98-4db1-817f-f2b2382b4eae",
+    "_postman_id": "16f99f6b-8e93-40f2-ba91-eb495da84647",
     "name": "GymApp API",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "54103669",
-    "_collection_link": "https://go.postman.co/collection/54103669-c25f7654-8c98-4db1-817f-f2b2382b4eae?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/54103669-16f99f6b-8e93-40f2-ba91-eb495da84647?source=collection_link"
   },
   "item": [
     {
@@ -48,7 +48,7 @@
           "response": []
         },
         {
-          "name": "GET exercises by id",
+          "name": "GET exercise by id",
           "request": {
             "method": "GET",
             "header": [],
@@ -69,16 +69,13 @@
           "response": []
         },
         {
-          "name": "PUT exerccise",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
+          "name": "PUT exercise",
           "request": {
-            "method": "GET",
+            "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"id\": \"2\",\r\n  \"name\": \"Updated Squat\",\r\n  \"description\": \"Updated leg exercise\",\r\n  \"muscleGroup\": \"Legs\",\r\n  \"difficulty\": \"Hard\"\r\n}",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Push Up Updated\",\r\n    \"description\": \"Updated chest exercise\",\r\n    \"muscleGroup\": \"Chest\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/push_up_exercise.jpg\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -124,7 +121,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"id\": \"3\",\n\"name\": \"Incline Bench Press\",\n\"description\": \"Chest exercise\",\n\"muscleGroup\": \"Chest\",\n\"difficulty\": \"Medium\"\n}",
+              "raw": "{\n\"id\": 4,\n\"name\": \"Incline Bench Press\",\n\"description\": \"Chest exercise\",\n\"muscleGroup\": \"Chest\",\n\"difficulty\": \"Medium\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -169,13 +166,13 @@
           "response": []
         },
         {
-          "name": "PATCH Exercise",
+          "name": "PATCH exercise",
           "request": {
             "method": "PATCH",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"New Squat\",\r\n  \"difficulty\": \"Medium\"\r\n}",
+              "raw": "{\r\n  \"name\": \"New Bench Press\",\r\n  \"difficulty\": \"EXTREME\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -183,7 +180,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/exercises/2",
+              "raw": "http://localhost:8080/api/exercises/3",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -192,6 +189,336 @@
               "path": [
                 "api",
                 "exercises",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Routine",
+      "item": [
+        {
+          "name": "GET all routines",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routines",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routines"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "GET routine by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routines/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routines",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT routine",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"PPL Updated\",\r\n    \"description\": \"Updated routine for hypertrophy\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/default-routine.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/routines/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routines",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST routine",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Strength Routine\",\r\n    \"description\": \"Routine for strength gain\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/default-routine.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/routines",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routines"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE routine",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routines/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routines",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH routine",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"difficulty\": \"EXTREME\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/routines/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routines",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Trainers",
+      "item": [
+        {
+          "name": "GET all trainers",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"difficulty\": \"EXTREME\"\r\n    \r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/trainers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "trainers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET trainers by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/trainers/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "trainers",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT trainer",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/trainers/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "trainers",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST trainer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Trainer 4\",\r\n    \"email\": \"trainer4@email.com\",\r\n    \"description\": \"Madrid, 30 years old\",\r\n    \"imageUrl\": \"/images/default-trainer.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/trainers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "trainers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE trainer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Trainer 4\",\r\n    \"email\": \"trainer4@email.com\",\r\n    \"description\": \"Madrid, 30 years old\",\r\n    \"imageUrl\": \"/images/default-trainer.png\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/trainers/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "trainers",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"nuevoCorreo@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/trainers/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "trainers",
                 "2"
               ]
             }

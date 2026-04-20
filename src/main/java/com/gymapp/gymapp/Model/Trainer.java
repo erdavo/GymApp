@@ -8,6 +8,10 @@ public class Trainer {
     private String imageUrl;
     // private List<Routine> routines; // 1:N con Routine
 
+    public Trainer() {
+        this.imageUrl = "/images/default-trainer.png";
+    }
+
     public Trainer(Integer id, String name, String email, String description, String imageUrl) {
         this.id = id;
         this.name = name;
