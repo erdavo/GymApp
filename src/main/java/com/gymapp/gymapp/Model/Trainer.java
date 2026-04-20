@@ -20,7 +20,7 @@ public class Trainer {
     }
 
     public Trainer(String id, String name, String email, String description) {
-        this(id, name, email, description, "/images/default-exercise.jpg");
+        this(id, name, email, description, "/images/default-trainer.png");
     }
 
     public String getId() {

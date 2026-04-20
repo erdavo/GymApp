@@ -20,7 +20,7 @@ public class Routine {
     }
 
     public Routine(String id, String name, String description, String difficulty) {
-        this(id, name, description, difficulty, "/images/default-routine.jpg");
+        this(id, name, description, difficulty, "/images/default-routine.png");
     }
 
     public String getId() {
