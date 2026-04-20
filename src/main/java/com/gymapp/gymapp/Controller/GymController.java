@@ -4,16 +4,14 @@ import com.gymapp.gymapp.Model.Exercise;
 import com.gymapp.gymapp.Model.Routine;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.gymapp.gymapp.Service.ExerciseService;
 import com.gymapp.gymapp.Service.RoutineService;
 import com.gymapp.gymapp.Service.TrainerService;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.spec.RSAOtherPrimeInfo;
+import java.util.Map;
 
 @Controller
 public class GymController {
@@ -81,15 +79,31 @@ public class GymController {
         return "redirect:/";
     }
 
-    @PostMapping("/exercises/update")
-    public String updateExercise(@ModelAttribute Exercise exercise) {
-        exerciseService.updateExercise(exercise.getId(), exercise);
+    @PatchMapping("/exercises/update")
+    public String patchExercise(@RequestParam Integer id, @RequestParam Map<String, Object> updates) {
+
+        updates.remove("id");
+        updates.remove("_method");
+        updates.remove("_csrf");
+
+        updates.values().removeIf(value -> value == null || value.toString().trim().isEmpty());
+
+        exerciseService.patchExercise(id, updates);
+
         return "redirect:/#popular-exercises";
     }
 
-    @PostMapping("/routines/update")
-    public String updateRoutine(@ModelAttribute Routine routine) {
-        routineService.updateRoutine(routine.getId(), routine);
+    @PatchMapping("/routines/update")
+    public String patchRoutine(@RequestParam Integer id, @RequestParam Map<String, Object> updates) {
+
+        updates.remove("id");
+        updates.remove("_method");
+        updates.remove("_csrf");
+
+        updates.values().removeIf(value -> value == null || value.toString().trim().isEmpty());
+
+        routineService.patchRoutine(id, updates);
+
         return "redirect:/#featured-routines";
     }
 
