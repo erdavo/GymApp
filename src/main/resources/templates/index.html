@@ -48,22 +48,23 @@
         <h2>POPULAR EXERCISES</h2>
 
         <div class="search-bar">
-            <input type="text" placeholder="Search exercise...">
+            <input type="text" id="searchInput" placeholder="Search exercise...">
         </div>
 
         <div class="filters">
-            <button type="button">Chest</button>
-            <button type="button">Back</button>
-            <button type="button">Legs</button>
-            <button type="button">Arms</button>
-            <button type="button">Cardio</button>
-            <button type="button">Abs</button>
+            <button type="button" data-filter="all">All</button>
+            <button type="button" data-filter="Chest">Chest</button>
+            <button type="button" data-filter="Back">Back</button>
+            <button type="button" data-filter="Legs">Legs</button>
+            <button type="button" data-filter="Arms">Arms</button>
+            <button type="button" data-filter="Cardio">Cardio</button>
+            <button type="button" data-filter="Abs">Abs</button>
         </div>
 
         <div class="card-grid">
             {{#exercises}}
-            <div class="exercise-card">
-                <img src="{{imageUrl}}" id="searchInput" alt="Photo of {{name}}">
+            <div class="exercise-card" data-muscle="{{muscleGroup}}">
+                <img src="{{imageUrl}}" alt="Photo of {{name}}">
                 <div class="card-content">
                     <h3>{{name}}</h3>
                     <p>{{muscleGroup}} - {{difficulty}}</p>
