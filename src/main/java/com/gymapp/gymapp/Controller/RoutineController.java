@@ -35,8 +35,9 @@ public class RoutineController {
     }
 
     @PostMapping("/api/routines")
-    public Routine createRoutine(@RequestBody Routine routine) {
-        return routineService.createRoutine(routine);
+    public ResponseEntity<Routine> createRoutine(@RequestBody Routine routine) {
+        Routine created = routineService.createRoutine(routine);
+        return new ResponseEntity<>(created, org.springframework.http.HttpStatus.CREATED);
     }
 
     @PutMapping("/api/routines/{id}")

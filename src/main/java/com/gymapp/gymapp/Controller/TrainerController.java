@@ -1,7 +1,5 @@
 package com.gymapp.gymapp.Controller;
 
-import com.gymapp.gymapp.Model.Routine;
-import com.gymapp.gymapp.Model.Trainer;
 import com.gymapp.gymapp.Model.Trainer;
 import com.gymapp.gymapp.Service.TrainerService;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +32,10 @@ public class TrainerController {
     }
 
     @PostMapping("/api/trainers")
-    public Trainer createTrainer(@RequestBody Trainer trainer) { return trainerService.createTrainer(trainer); }
+    public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer trainer) {
+        Trainer created = trainerService.createTrainer(trainer);
+        return new ResponseEntity<>(created, org.springframework.http.HttpStatus.CREATED);
+    }
 
     @PutMapping("/api/trainers/{id}")
     public ResponseEntity<Trainer> updateTrainer(@PathVariable Integer id, @RequestBody Trainer updateTrainer) {

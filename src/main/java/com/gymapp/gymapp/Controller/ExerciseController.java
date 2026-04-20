@@ -35,8 +35,9 @@ public class ExerciseController {
     }
 
     @PostMapping("/api/exercises")
-    public Exercise createExercise(@RequestBody Exercise exercise) {
-        return exerciseService.createExercise(exercise);
+    public ResponseEntity<Exercise> createExercise(@RequestBody Exercise exercise) {
+        Exercise created = exerciseService.createExercise(exercise);
+        return new ResponseEntity<>(created, org.springframework.http.HttpStatus.CREATED);
     }
 
     @PutMapping("/api/exercises/{id}")
