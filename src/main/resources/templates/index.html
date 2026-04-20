@@ -82,32 +82,16 @@
         <h2 id="featured-routines">FEATURED ROUTINES</h2>
 
         <div class="card-grid">
+            {{#routines}}
             <div class="routine-card">
-                <img src="/images/routine.png" alt="Photo of Routine 1">
+                <img src="{{imageUrl}}" id="searchInput" alt="Photo of {{name}}">
                 <div class="card-content">
-                    <h3>Routine 1</h3>
-                    <p>More info</p>
+                    <h3>{{name}}</h3>
+                    <p>{{description}} - {{difficulty}}</p>
                     <a href="" class="card-button">View Routine</a>
                 </div>
             </div>
-
-            <div class="routine-card">
-                <img src="/images/routine.png" alt="Photo of Routine 2">
-                <div class="card-content">
-                    <h3>Routine 2</h3>
-                    <p>More info</p>
-                    <a href="" class="card-button">View Routine</a>
-                </div>
-            </div>
-
-            <div class="routine-card">
-                <img src="/images/routine.png" alt="Photo of Routine 3">
-                <div class="card-content">
-                    <h3>Routine 3</h3>
-                    <p>More info</p>
-                    <a href="" class="card-button">View Routine</a>
-                </div>
-            </div>
+            {{/routines}}
         </div>
 
         <div class="routine-button">
@@ -120,32 +104,16 @@
         <h2 id="personal-trainers">PERSONAL TRAINERS</h2>
 
         <div class="card-grid">
+            {{#trainers}}
             <div class="trainer-card">
-                <img src="/images/trainer.png" alt="Photo of Trainer 1">
+                <img src="{{imageUrl}}" id="searchInput" alt="Photo of {{name}}">
                 <div class="card-content">
-                    <h3>Trainer 1</h3>
-                    <p>City/Country, years old</p>
+                    <h3>{{name}}</h3>
+                    <p>{{description}}</p>
                     <a href="" class="card-button">View Profile</a>
                 </div>
             </div>
-
-            <div class="trainer-card">
-                <img src="/images/trainer.png" alt="Photo of Trainer 2">
-                <div class="card-content">
-                    <h3>Trainer 2</h3>
-                    <p>City/Country, years old</p>
-                    <a href="" class="card-button">View Profile</a>
-                </div>
-            </div>
-
-            <div class="trainer-card">
-                <img src="/images/trainer.png" alt="Photo of Trainer 3">
-                <div class="card-content">
-                    <h3>Trainer 3</h3>
-                    <p>City/Country, years old</p>
-                    <a href="" class="card-button">View Profile</a>
-                </div>
-            </div>
+            {{/trainers}}
         </div>
     </section>
 
