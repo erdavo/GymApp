@@ -6,6 +6,7 @@ let activeFilter = "all";
 
 function filterExercises() {
     const searchValue = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
 
     cards.forEach(card => {
         const text = card.innerText.toLowerCase();
@@ -14,7 +15,12 @@ function filterExercises() {
         const matchesSearch = text.includes(searchValue);
         const matchesFilter = activeFilter === "all" || muscle === activeFilter.toLowerCase();
 
-        card.style.display = matchesSearch && matchesFilter ? "block" : "none";
+        if (matchesSearch && matchesFilter) {
+            card.style.display = "flex";
+            visibleCount++;
+        } else {
+            card.style.display = "none"; // ← esto faltaba
+        }
     });
 }
 

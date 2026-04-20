@@ -33,7 +33,7 @@ function calculateBMR() {
         }
 
         resultDiv.innerHTML = `
-            <h3>Your BMR: <stronge>${bmr.toFixed(0)}</stronge> kcal/day</h3>
+            <h3>Your BMR: <strong>${bmr.toFixed(0)}</strong> kcal/day</h3>
             <p>This is the energy your body needs at rest.</p>
         `;
     } else {
