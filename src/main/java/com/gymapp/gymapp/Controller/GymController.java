@@ -29,4 +29,9 @@ public class GymController {
 
         return "index";
     }
+
+    @GetMapping("/addExercise")
+    public String addExercise() {
+        return "addExercise"; 
+    }
 }
