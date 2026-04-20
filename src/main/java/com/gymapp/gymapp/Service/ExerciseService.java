@@ -21,7 +21,7 @@ public class ExerciseService {
                 "Chest exercise",
                 "Chest",
                 "Medium",
-                "/images/exercise.png"
+                "/images/push_up_exercise.jpg"
         ));
 
         exercises.put("2", new Exercise(
@@ -30,7 +30,15 @@ public class ExerciseService {
                 "Leg exercise",
                 "Legs",
                 "Easy",
-                "/images/squat.jpg"
+                "/images/squad_exercise.jpg"
+        ));
+        exercises.put("3", new Exercise(
+                "3",
+                "Bench press",
+                "Chest exercise",
+                "Chest",
+                "Medium",
+                "/images/bench_press_exercise.jpg"
         ));
     }
 
