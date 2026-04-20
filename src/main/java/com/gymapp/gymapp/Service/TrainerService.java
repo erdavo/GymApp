@@ -1,5 +1,6 @@
 package com.gymapp.gymapp.Service;
 
+import com.gymapp.gymapp.Model.Routine;
 import com.gymapp.gymapp.Model.Trainer;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class TrainerService {
     }
 
     public Collection<Trainer> getAllTrainers() { return trainers.values(); }
+
+    public Trainer getTrainerById(String id) {
+        return trainers.get(id);
+    }
 
     public Trainer createTrainer(Trainer trainer) {
         trainers.put(trainer.getId(), trainer);
