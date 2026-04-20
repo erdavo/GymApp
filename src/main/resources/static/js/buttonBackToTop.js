@@ -1,19 +1,17 @@
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-links a");
+document.addEventListener("DOMContentLoaded", function() {
+    const backToTopBtn = document.getElementById("backToTop");
 
-window.addEventListener("scroll", () => {
-    let current = "";
+    if (backToTopBtn) {
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        };
 
-    sections.forEach(section => {
-        if (window.scrollY >= section.offsetTop - 100) {
-            current = section.getAttribute("id");
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
-        }
-    });
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
 });
