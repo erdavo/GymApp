@@ -11,13 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ExerciseService {
 
     private final Map<Integer, Exercise> exercises;
-    private int nextId = 4;
+    private int nextId = 1;
 
     public ExerciseService() {
         exercises = new ConcurrentHashMap<>();
 
-        exercises.put(1, new Exercise(
-                1,
+        createExercise(new Exercise(
+                null,
                 "Push Up",
                 "Chest exercise",
                 "Chest",
@@ -25,8 +25,8 @@ public class ExerciseService {
                 "/images/push_up_exercise.jpg"
         ));
 
-        exercises.put(2, new Exercise(
-                2,
+        createExercise(new Exercise(
+                null,
                 "Squat",
                 "Leg exercise",
                 "Legs",
@@ -34,14 +34,16 @@ public class ExerciseService {
                 "/images/squad_exercise.jpg"
         ));
 
-        exercises.put(3, new Exercise(
-                3,
+        createExercise(new Exercise(
+                null,
                 "Bench press",
                 "Chest exercise",
                 "Chest",
                 "Medium",
                 "/images/bench_press_exercise.jpg"
         ));
+
+
     }
 
     public Collection<Exercise> getAllExercises() {

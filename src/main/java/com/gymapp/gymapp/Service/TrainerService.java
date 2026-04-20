@@ -10,27 +10,32 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class TrainerService {
-    private final Map<String, Trainer> trainers;
+    private final Map<Integer, Trainer> trainers;
+    private int nextId = 1;
 
     public TrainerService(){
         trainers = new ConcurrentHashMap<>();
-        trainers.put("1", new Trainer("1", "Trainer 1", "email@email.com", "City/Country, years old"));
-        trainers.put("2", new Trainer("2", "Trainer 2", "email@email.com", "City/Country, years old"));
-        trainers.put("3", new Trainer("3", "Trainer 3", "email@email.com", "City/Country, years old"));
+
+        createTrainer(new Trainer(null, "Trainer 1", "email@email.com", "City/Country, years old"));
+        createTrainer(new Trainer(null, "Trainer 2", "email@email.com", "City/Country, years old"));
+        createTrainer(new Trainer(null, "Trainer 3", "email@email.com", "City/Country, years old"));
     }
+
 
     public Collection<Trainer> getAllTrainers() { return trainers.values(); }
 
-    public Trainer getTrainerById(String id) {
+    public Trainer getTrainerById(Integer id) {
         return trainers.get(id);
     }
 
     public Trainer createTrainer(Trainer trainer) {
-        trainers.put(trainer.getId(), trainer);
+        trainer.setId(nextId);
+        trainers.put(nextId, trainer);
+        nextId++;
         return trainer;
     }
 
-    public Trainer updateTrainer(String id, Trainer updatedTrainer) {
+    public Trainer updateTrainer(Integer id, Trainer updatedTrainer) {
         if (trainers.containsKey(id)) {
             updatedTrainer.setId(id);
             trainers.put(id, updatedTrainer);
@@ -39,11 +44,11 @@ public class TrainerService {
         return null;
     }
 
-    public Trainer deleteTrainer(String id) {
+    public Trainer deleteTrainer(Integer id) {
         return trainers.remove(id);
     }
 
-    public Trainer patchTrainer(String id, Map<String, Object> updates) {
+    public Trainer patchTrainer(Integer id, Map<String, Object> updates) {
         Trainer trainer = trainers.get(id);
 
         if (trainer != null) {

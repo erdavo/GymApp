@@ -11,13 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class RoutineService {
     private final Map<Integer, Routine> routines;
-    private int nextId = 4;
+    private int nextId = 1;
 
     public RoutineService() {
         routines = new ConcurrentHashMap<>();
-        routines.put(1, new Routine(1, "PPL", "Skinny routines", "Medium"));
-        routines.put(2, new Routine(2, "Full body", "To skinny routine", "Too easy"));
-        routines.put(3, new Routine(3, "Upper-Lower", "Light weight baibe routine", "Too hard"));
+        createRoutine(new Routine(null, "PPL", "Skinny routines", "Medium"));
+        createRoutine(new Routine(null, "Full body", "To skinny routine", "Too easy"));
+        createRoutine(new Routine(null, "Upper-Lower", "Light weight baibe routine", "Too hard"));
     }
 
     public Collection<Routine> getAllRoutines() {

@@ -1,14 +1,14 @@
 package com.gymapp.gymapp.Model;
 
 public class Trainer {
-    private String id;
+    private Integer id;
     private String name;
     private String email;
     private String description;
     private String imageUrl;
     // private List<Routine> routines; // 1:N con Routine
 
-    public Trainer(String id, String name, String email, String description, String imageUrl) {
+    public Trainer(Integer id, String name, String email, String description, String imageUrl) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -19,15 +19,15 @@ public class Trainer {
         // this.routines = new ArrayList<>();
     }
 
-    public Trainer(String id, String name, String email, String description) {
+    public Trainer(Integer id, String name, String email, String description) {
         this(id, name, email, description, "/images/default-trainer.png");
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

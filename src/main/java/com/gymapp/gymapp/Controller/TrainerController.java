@@ -18,7 +18,7 @@ public class TrainerController {
     public Collection<Trainer> getAllTrainers() { return trainerService.getAllTrainers(); }
 
     @GetMapping("/api/trainers/{id}")
-    public ResponseEntity<Trainer> getTrainerById(@PathVariable String id) {
+    public ResponseEntity<Trainer> getTrainerById(@PathVariable Integer id) {
         Trainer trainer = trainerService.getTrainerById(id);
 
         if (trainer != null) {
@@ -32,10 +32,10 @@ public class TrainerController {
     public Trainer createTrainer(@RequestBody Trainer trainer) { return trainerService.createTrainer(trainer); }
 
     @PutMapping("/api/trainers/{id}")
-    public Trainer updateTrainer(@PathVariable String id, @RequestBody Trainer updatedTrainer) { return trainerService.updateTrainer(id, updatedTrainer);}
+    public Trainer updateTrainer(@PathVariable Integer id, @RequestBody Trainer updatedTrainer) { return trainerService.updateTrainer(id, updatedTrainer);}
 
     @DeleteMapping("/api/trainers/{id}")
-    public ResponseEntity<Trainer> deleteTrainer(@PathVariable String id) {
+    public ResponseEntity<Trainer> deleteTrainer(@PathVariable Integer id) {
         Trainer trainer = trainerService.getTrainerById(id);
 
         if (trainer != null) {
@@ -47,7 +47,7 @@ public class TrainerController {
     }
 
     @PatchMapping("/api/trainers/{id}")
-    public ResponseEntity<Trainer> patchTrainer(@PathVariable String id, @RequestBody Map<String, Object> updates) {
+    public ResponseEntity<Trainer> patchTrainer(@PathVariable Integer id, @RequestBody Map<String, Object> updates) {
         Trainer trainer = trainerService.patchTrainer(id, updates);
 
         if (trainer != null) {

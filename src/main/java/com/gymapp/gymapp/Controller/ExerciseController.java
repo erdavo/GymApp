@@ -42,8 +42,14 @@ public class ExerciseController {
     }
 
     @PutMapping("/api/exercises/{id}")
-    public Exercise updateExercise(@PathVariable Integer id, @RequestBody Exercise updatedExercise) {
-        return exerciseService.updateExercise(id, updatedExercise);
+    public ResponseEntity<Exercise> updateExercise(@PathVariable Integer id, @RequestBody Exercise updatedExercise) {
+        Exercise exercise = exerciseService.updateExercise(id, updatedExercise);
+
+        if (exercise != null) {
+            return ResponseEntity.ok(exercise);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/api/exercises/{id}")
