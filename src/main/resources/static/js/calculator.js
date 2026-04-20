@@ -5,27 +5,19 @@ function calculateBMR() {
     const heightInput = document.getElementById('height');
     const resultDiv = document.getElementById('bmr-result');
 
-
     const arrayInputs = [ageInput, weightInput, heightInput];
-    arrayInputs.forEach(input => input.classList.remove('input-error'));
-
+    
     let isValid = true;
 
-    if (!ageInput.value || ageInput.value <= 0){
-        ageInput.classList.add("input-error");
-        isValid = false;
-    }
+    arrayInputs.forEach(input => {
+        input.classList.remove('input-error');
 
-    if (!weightInput.value || weightInput.value <= 0) {
-        weightInput.classList.add('input-error');
-        isValid = false;
-    }
-
-    if (!heightInput.value || heightInput.value <= 0) {
-        heightInput.classList.add('input-error');
-        isValid = false;
-    }
-
+        if (!input.value || input.value <= 0) {
+            void input.offsetWidth; 
+            input.classList.add('input-error');
+            isValid = false; 
+        }
+    });
 
     if (isValid) {
         const age = parseInt(ageInput.value);
@@ -34,17 +26,17 @@ function calculateBMR() {
 
         let bmr;
 
-        if (gender === 'male') {
+        if (gender === 'male'){
             bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-        } else {
+        }else {
             bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
         }
 
         resultDiv.innerHTML = `
-            <h3>Your BMR: ${bmr.toFixed(0)} kcal/day</h3>
+            <h3>Your BMR: <stronge>${bmr.toFixed(0)}</stronge> kcal/day</h3>
             <p>This is the energy your body needs at rest.</p>
         `;
     } else {
-        resultDiv.innerHTML = "<p style = 'color: #ff3b3b'>Please fill all fields correctly.</p>";
+        resultDiv.innerHTML = "<p style='color: #ff3b3b'>Please fill all fields correctly.</p>";
     }
 }
