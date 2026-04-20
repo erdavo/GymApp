@@ -1,7 +1,5 @@
 package com.gymapp.gymapp.Controller;
 
-
-
 import com.gymapp.gymapp.Model.Exercise;
 import com.gymapp.gymapp.Service.ExerciseService;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,6 @@ import java.util.Map;
 
 @RestController
 public class ExerciseController {
-
     private final ExerciseService exerciseService;
 
     public ExerciseController(ExerciseService exerciseService) {
@@ -21,8 +18,9 @@ public class ExerciseController {
     }
 
     @GetMapping("/api/exercises")
-    public Collection<Exercise> getAllExercises() {
-        return exerciseService.getAllExercises();
+    public ResponseEntity<Collection<Exercise>> getAllExercises() {
+        Collection<Exercise> exercises = exerciseService.getAllExercises();
+        return ResponseEntity.ok(exercises);
     }
 
     @GetMapping("/api/exercises/{id}")

@@ -1,5 +1,6 @@
 package com.gymapp.gymapp.Controller;
 
+import com.gymapp.gymapp.Model.Exercise;
 import com.gymapp.gymapp.Model.Routine;
 import com.gymapp.gymapp.Service.RoutineService;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,9 @@ public class RoutineController {
     }
 
     @GetMapping("/api/routines")
-    public Collection<Routine> getAllRoutines() {
-        return routineService.getAllRoutines();
+    public ResponseEntity<Collection<Routine>> getAllRoutines() {
+        Collection<Routine> routines = routineService.getAllRoutines();
+        return ResponseEntity.ok(routines);
     }
 
     @GetMapping("/api/routines/{id}")
@@ -38,8 +40,14 @@ public class RoutineController {
     }
 
     @PutMapping("/api/routines/{id}")
-    public Routine updateRoutine(@PathVariable Integer id, @RequestBody Routine updatedRoutine) {
-        return routineService.updateRoutine(id, updatedRoutine);
+    public ResponseEntity<Routine> updateRoutine(@PathVariable Integer id, @RequestBody Routine updatedRoutine) {
+        Routine routine = routineService.updateRoutine(id, updatedRoutine);
+
+        if (routine != null) {
+            return ResponseEntity.ok(routine);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/api/routines/{id}")

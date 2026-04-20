@@ -1,5 +1,7 @@
 package com.gymapp.gymapp.Controller;
 
+import com.gymapp.gymapp.Model.Routine;
+import com.gymapp.gymapp.Model.Trainer;
 import com.gymapp.gymapp.Model.Trainer;
 import com.gymapp.gymapp.Service.TrainerService;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,10 @@ public class TrainerController {
     public TrainerController(TrainerService trainerService) { this.trainerService = trainerService; }
 
     @GetMapping("/api/trainers")
-    public Collection<Trainer> getAllTrainers() { return trainerService.getAllTrainers(); }
+    public ResponseEntity<Collection<Trainer>> getAllTrainers() {
+        Collection<Trainer> trainers = trainerService.getAllTrainers();
+        return ResponseEntity.ok(trainers);
+    }
 
     @GetMapping("/api/trainers/{id}")
     public ResponseEntity<Trainer> getTrainerById(@PathVariable Integer id) {
@@ -32,7 +37,15 @@ public class TrainerController {
     public Trainer createTrainer(@RequestBody Trainer trainer) { return trainerService.createTrainer(trainer); }
 
     @PutMapping("/api/trainers/{id}")
-    public Trainer updateTrainer(@PathVariable Integer id, @RequestBody Trainer updatedTrainer) { return trainerService.updateTrainer(id, updatedTrainer);}
+    public ResponseEntity<Trainer> updateTrainer(@PathVariable Integer id, @RequestBody Trainer updateTrainer) {
+        Trainer trainer = trainerService.updateTrainer(id, updateTrainer);
+
+        if (trainer != null) {
+            return ResponseEntity.ok(trainer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @DeleteMapping("/api/trainers/{id}")
     public ResponseEntity<Trainer> deleteTrainer(@PathVariable Integer id) {
