@@ -51,10 +51,6 @@ public class ExerciseService {
     }
 
     public Exercise createExercise(Exercise exercise) {
-        if (exercise.getImageUrl() == null || exercise.getImageUrl().isBlank()) {
-            exercise.setImageUrl("/images/default-exercise.jpg");
-        }
-
         exercises.put(exercise.getId(), exercise);
         return exercise;
     }
@@ -63,9 +59,6 @@ public class ExerciseService {
         if (exercises.containsKey(id)) {
             updatedExercise.setId(id);
 
-            if (updatedExercise.getImageUrl() == null || updatedExercise.getImageUrl().isBlank()) {
-                updatedExercise.setImageUrl("/images/default-exercise.jpg");
-            }
 
             exercises.put(id, updatedExercise);
             return updatedExercise;
