@@ -71,7 +71,7 @@ public class Exercise {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-default-exercise.png"
+                ? "/images/default-exercise.png"
                 : imageUrl;
     }
 }

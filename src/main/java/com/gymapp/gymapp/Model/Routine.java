@@ -14,7 +14,7 @@ public class Routine {
         this.description = description;
         this.difficulty = difficulty;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-default-routine.png"
+                ? "/images/default-routine.png"
                 : imageUrl;
         // this.exercises = exercises;
     }
