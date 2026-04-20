@@ -61,7 +61,7 @@ public class Trainer {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-exercise.jpg"
+                ? "/images/default-default-trainer.png"
                 : imageUrl;
     }
 
