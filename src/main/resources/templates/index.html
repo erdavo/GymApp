@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymApp</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -167,6 +168,28 @@
                     <a href="" class="card-button">View Profile</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>BMR - CALCULATOR <i class="fas fa-info-circle info-icon"
+                title="The Mifflin-St Jeor formula estimates your basal metabolic rate."></i></h2>
+
+        <div class="bmi-calculator">
+            <p> Calculate your Basal Metabolic Rate to track your progress.</p>
+            <div class="calculator-inputs">
+                <select id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <input type="number" id="age" placeholder="Age">
+                <input type="number" id="weight" placeholder="Weight (kg)">
+                <input type="number" id="height" placeholder="Height (cm)">
+
+                <button type="button" onclick="calculateBMR()" class="add-button">CALCULATE BMR</button>
+            </div>
+            <div id="bmr-result" class="result-display"></div>
+
         </div>
 
     </section>
