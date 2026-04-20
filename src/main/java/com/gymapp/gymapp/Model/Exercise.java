@@ -16,7 +16,7 @@ public class Exercise {
         this.muscleGroup = muscleGroup;
         this.difficulty = difficulty;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-exercise.jpg"
+                ? "/images/default-exercise.png"
                 : imageUrl;
     }
 

@@ -61,7 +61,7 @@ public class Routine {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-exercise.jpg"
+                ? "/images/default-routine.png"
                 : imageUrl;
     }
 

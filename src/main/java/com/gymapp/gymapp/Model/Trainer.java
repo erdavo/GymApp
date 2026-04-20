@@ -14,7 +14,7 @@ public class Trainer {
         this.email = email;
         this.description = description;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-trainer.jpg"
+                ? "/images/default-trainer.png"
                 : imageUrl;
         // this.routines = new ArrayList<>();
     }
