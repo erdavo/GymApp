@@ -6,13 +6,23 @@ public class Exercise {
     private String description;
     private String muscleGroup;
     private String difficulty;
+    private String imageUrl;
 
-    public Exercise(String id, String name, String description, String muscleGroup, String difficulty) {
+
+    public Exercise(String id, String name, String description, String muscleGroup, String difficulty, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.muscleGroup = muscleGroup;
         this.difficulty = difficulty;
+        this.imageUrl = (imageUrl == null || imageUrl.isBlank())
+                ? "/images/default-exercise.jpg"
+                : imageUrl;
+    }
+
+
+    public Exercise(String id, String name, String description, String muscleGroup, String difficulty) {
+        this(id, name, description, muscleGroup, difficulty, "/images/default-exercise.jpg");
     }
 
     public String getId() {
@@ -53,5 +63,15 @@ public class Exercise {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = (imageUrl == null || imageUrl.isBlank())
+                ? "/images/default-exercise.jpg"
+                : imageUrl;
     }
 }

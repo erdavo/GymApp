@@ -4,7 +4,6 @@ import com.gymapp.gymapp.Model.Exercise;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,8 +14,24 @@ public class ExerciseService {
 
     public ExerciseService() {
         exercises = new ConcurrentHashMap<>();
-        exercises.put("1", new Exercise("1", "Push Up", "Chest exercise", "Chest", "Medium"));
-        exercises.put("2", new Exercise("2", "Squat", "Leg exercise", "Legs", "Easy"));
+
+        exercises.put("1", new Exercise(
+                "1",
+                "Push Up",
+                "Chest exercise",
+                "Chest",
+                "Medium",
+                "/images/exercise.png"
+        ));
+
+        exercises.put("2", new Exercise(
+                "2",
+                "Squat",
+                "Leg exercise",
+                "Legs",
+                "Easy",
+                "/images/squat.jpg"
+        ));
     }
 
     public Collection<Exercise> getAllExercises() {
@@ -28,6 +43,10 @@ public class ExerciseService {
     }
 
     public Exercise createExercise(Exercise exercise) {
+        if (exercise.getImageUrl() == null || exercise.getImageUrl().isBlank()) {
+            exercise.setImageUrl("/images/default-exercise.jpg");
+        }
+
         exercises.put(exercise.getId(), exercise);
         return exercise;
     }
@@ -35,6 +54,11 @@ public class ExerciseService {
     public Exercise updateExercise(String id, Exercise updatedExercise) {
         if (exercises.containsKey(id)) {
             updatedExercise.setId(id);
+
+            if (updatedExercise.getImageUrl() == null || updatedExercise.getImageUrl().isBlank()) {
+                updatedExercise.setImageUrl("/images/default-exercise.jpg");
+            }
+
             exercises.put(id, updatedExercise);
             return updatedExercise;
         }
@@ -63,6 +87,9 @@ public class ExerciseService {
         }
         if (updates.containsKey("difficulty")) {
             exercise.setDifficulty((String) updates.get("difficulty"));
+        }
+        if (updates.containsKey("imageUrl")) {
+            exercise.setImageUrl((String) updates.get("imageUrl"));
         }
 
         return exercise;
