@@ -1,29 +1,26 @@
 package com.gymapp.gymapp.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Trainer {
     private String id;
     private String name;
     private String email;
-    private String specialty;
+    private String speciality;
     private String imageUrl;
     // private List<Routine> routines; // 1:N con Routine
 
-    public Trainer(String id, String name, String email, String specialty, String imageUrl) {
+    public Trainer(String id, String name, String email, String speciality, String imageUrl) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.specialty = specialty;
+        this.speciality = speciality;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
                 ? "/images/default-trainer.jpg"
                 : imageUrl;
         // this.routines = new ArrayList<>();
     }
 
-    public Trainer(String id, String name, String email, String specialty) {
-        this(id, name, email, specialty, "/images/default-exercise.jpg");
+    public Trainer(String id, String name, String email, String speciality) {
+        this(id, name, email, speciality, "/images/default-exercise.jpg");
     }
 
     public String getId() {
@@ -50,12 +47,12 @@ public class Trainer {
         this.email = email;
     }
 
-    public String getSpecialty() {
-        return specialty;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
     public String getImageUrl() {
