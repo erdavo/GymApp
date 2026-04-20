@@ -14,9 +14,9 @@ public class TrainerService {
 
     public TrainerService(){
         trainers = new ConcurrentHashMap<>();
-        trainers.put("1", new Trainer("1", "Trainer 1", "City/Country, years old", "Speciality"));
-        trainers.put("2", new Trainer("2", "Trainer 2", "City/Country, years old", "Speciality"));
-        trainers.put("3", new Trainer("3", "Trainer 3", "City/Country, years old", "Speciality"));
+        trainers.put("1", new Trainer("1", "Trainer 1", "email@email.com", "City/Country, years old"));
+        trainers.put("2", new Trainer("2", "Trainer 2", "email@email.com", "City/Country, years old"));
+        trainers.put("3", new Trainer("3", "Trainer 3", "email@email.com", "City/Country, years old"));
     }
 
     public Collection<Trainer> getAllTrainers() { return trainers.values(); }
@@ -54,8 +54,8 @@ public class TrainerService {
             if (updates.containsKey("email")) {
                 trainer.setEmail((String) updates.get("email"));
             }
-            if (updates.containsKey("speciality")) {
-                trainer.setSpeciality((String) updates.get("speciality"));
+            if (updates.containsKey("description")) {
+                trainer.setDescription((String) updates.get("description"));
             }
             if (updates.containsKey("imageUrl")) {
                 trainer.setImageUrl((String) updates.get("imageUrl"));

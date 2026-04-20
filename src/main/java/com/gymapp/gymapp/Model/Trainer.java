@@ -4,23 +4,23 @@ public class Trainer {
     private String id;
     private String name;
     private String email;
-    private String speciality;
+    private String description;
     private String imageUrl;
     // private List<Routine> routines; // 1:N con Routine
 
-    public Trainer(String id, String name, String email, String speciality, String imageUrl) {
+    public Trainer(String id, String name, String email, String description, String imageUrl) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.speciality = speciality;
+        this.description = description;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
                 ? "/images/default-trainer.jpg"
                 : imageUrl;
         // this.routines = new ArrayList<>();
     }
 
-    public Trainer(String id, String name, String email, String speciality) {
-        this(id, name, email, speciality, "/images/default-exercise.jpg");
+    public Trainer(String id, String name, String email, String description) {
+        this(id, name, email, description, "/images/default-exercise.jpg");
     }
 
     public String getId() {
@@ -47,12 +47,12 @@ public class Trainer {
         this.email = email;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImageUrl() {
