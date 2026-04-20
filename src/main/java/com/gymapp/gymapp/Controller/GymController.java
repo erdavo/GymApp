@@ -34,4 +34,9 @@ public class GymController {
     public String addExercise() {
         return "addExercise"; 
     }
+
+    @GetMapping("/addRoutine")
+    public String addRoutinePage() {
+        return "addRoutine";
+    }
 }
