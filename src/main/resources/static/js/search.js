@@ -21,8 +21,14 @@ function filterExercises() {
 searchInput.addEventListener("keyup", filterExercises);
 
 filterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        activeFilter = button.dataset.filter || "all";
+    button.addEventListener("click", function () {
+        activeFilter = this.dataset.filter || "all";
+
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+
         filterExercises();
     });
 });
+
+filterExercises();

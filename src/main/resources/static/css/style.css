@@ -53,6 +53,13 @@ a {
     color: #ff3b3b;
 }
 
+
+
+/* Nav link activo */
+.nav-links a.active {
+    color: #ff3b3b;
+}
+
 .hero {
     position: relative;
     height: 80vh;
@@ -162,6 +169,12 @@ a {
 
 .filters button:hover {
     background: #ff3b3b;
+}
+
+
+.filters button.active {
+    background-color: #ff3b3b;
+    border-color: #ff3b3b;
 }
 
 .card-grid {

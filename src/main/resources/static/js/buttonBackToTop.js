@@ -1,20 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const backToTopBtn = document.getElementById("backToTop");
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
 
-    if (backToTopBtn) {
-        window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTopBtn.classList.add("show");    // Añade la clase (activa el fundido)
-            } else {
-                backToTopBtn.classList.remove("show"); // Quita la clase (desaparece suave)
-            }
-        };
+window.addEventListener("scroll", () => {
+    let current = "";
 
-        backToTopBtn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    }
+    sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 100) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+        }
+    });
 });
