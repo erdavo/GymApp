@@ -425,6 +425,15 @@
           "request": {
             "method": "PUT",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Trainer 1 Updated\",\r\n    \"email\": \"updated@email.com\",\r\n    \"description\": \"Barcelona, 35 years old\",\r\n    \"imageUrl\": \"/images/default-trainer.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "http://localhost:8080/api/trainers/1",
               "protocol": "http",
@@ -496,7 +505,7 @@
           "response": []
         },
         {
-          "name": "New Request",
+          "name": "PATCH trainer",
           "request": {
             "method": "PATCH",
             "header": [],
