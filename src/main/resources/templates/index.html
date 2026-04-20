@@ -80,17 +80,22 @@
             <button type="button" data-filter="Abs">Abs</button>
         </div>
 
-        <div class="card-grid">
-            {{#exercises}}
-            <div class="exercise-card" data-muscle="{{muscleGroup}}">
-                <img src="{{imageUrl}}" alt="Photo of {{name}}">
-                <div class="card-content">
-                    <h3>{{name}}</h3>
-                    <p>{{muscleGroup}} - {{difficulty}}</p>
+    <div class="card-grid">
+        {{#exercises}}
+        <div class="exercise-card" data-muscle="{{muscleGroup}}">
+            <img src="{{imageUrl}}" alt="Photo of {{name}}">
+            <div class="card-content">
+                <h3>{{name}}</h3>
+                <p>{{muscleGroup}} - {{difficulty}}</p>
+                <div class="card-actions">
+                    <a href="/editExercise/{{id}}" class="card-button btn-edit">Edit</a>
+                    <a href="/exercises/delete/{{id}}" class="card-button btn-delete" 
+                    onclick="return confirm('Are you sure?')">Delete</a>
                 </div>
             </div>
-            {{/exercises}}
         </div>
+        {{/exercises}}
+    </div>
 
         <div class="exercise-button">
             <a href="/addExercise" class="add-button">Add Exercise</a>
