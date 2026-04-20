@@ -51,13 +51,13 @@ public class GymController {
     @PostMapping("/exercises/new")
     public String createExercise(@ModelAttribute Exercise exercise) {
         exerciseService.createExercise(exercise);
-        return "redirect:/";
+        return "redirect:/#popular-exercises";
     }
 
     @PostMapping("/routines/new")
     public String createRoutine(@ModelAttribute Routine routine) {
         routineService.createRoutine(routine);
-        return "redirect:/";
+        return "redirect:/#featured-routines";
     }
 
 
