@@ -125,6 +125,7 @@
     color: white;
     text-decoration: none;
     outline: none;
+    font-family: inherit;
 }
 
 .cancel-link:hover {

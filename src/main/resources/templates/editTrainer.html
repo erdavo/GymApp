@@ -9,43 +9,65 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-           <p>Update the trainer information and profile description.</p>
-                </div>
-                <form action="/trainers/update" method="POST" class="gym-form">
-                    <input type="hidden" name="_method" value="PATCH">
-                    <input type="hidden" name="id" value="{{trainer.id}}">
+<header class="navbar">
+    <div class="logo"><a href="/">Gym<span>App</span></a></div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/#popular-exercises">Exercises</a></li>
+            <li><a href="/#featured-routines">Routines</a></li>
+            <li><a href="/#personal-trainers">Personal Trainers</a></li>
+            <li><a href="/#bmr-calculator">BMR Calculator</a></li>
+        </ul>
+    </nav>
+</header>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" value="{{trainer.name}}" required>
-                        </div>
+<section class="routine-page">
+    <div class="routine-form-wrapper">
+        <div class="form-container">
+            <div class="form-header">
+                <p class="form-tag">Trainer Editor</p>
+                <h2>EDIT <span class="highlight">{{trainer.name}}</span></h2>
+                <p>Update the trainer information and profile description.</p>
+            </div>
 
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" value="{{trainer.email}}" required>
-                        </div>
+            <form action="/trainers/update" method="POST" class="gym-form">
+                <input type="hidden" name="_method" value="PATCH">
+                <input type="hidden" name="id" value="{{trainer.id}}">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" value="{{trainer.name}}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Profile Biography</label>
-                        <textarea id="description" name="description" rows="5">{{trainer.description}}</textarea>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" value="{{trainer.email}}" required>
                     </div>
+                </div>
 
-                    <div class="form-actions">
-                        <button type="submit" class="update-button">Save Changes</button>
-                        <a href="/#personal-trainers" class="cancel-link">Cancel</a>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <label for="description">Profile Biography</label>
+                    <textarea id="description" name="description" rows="5">{{trainer.description}}</textarea>
+                </div>
 
-    <footer class="footer">
-        <p>© 2026 GymApp | Trainer Management</p>
-    </footer>
+                <div class="form-actions">
+                    <button type="submit" class="update-button">Save Changes</button>
+                    <a href="/#personal-trainers" class="cancel-link">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-    <button id="backToTop" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+<footer class="footer">
+    <p>© 2026 GymApp | Trainer Management</p>
+</footer>
 
-    <script src="/js/buttonBackToTop.js"></script>
+<button id="backToTop" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="/js/buttonBackToTop.js"></script>
 </body>
 </html>
