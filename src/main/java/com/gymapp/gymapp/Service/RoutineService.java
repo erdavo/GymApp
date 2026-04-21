@@ -15,9 +15,29 @@ public class RoutineService {
 
     public RoutineService() {
         routines = new ConcurrentHashMap<>();
-        createRoutine(new Routine(null, "PPL", "Skinny routines", "Medium"));
-        createRoutine(new Routine(null, "Full body", "To skinny routine", "Too easy"));
-        createRoutine(new Routine(null, "Upper-Lower", "Light weight baibe routine", "Too hard"));
+        createRoutine(new Routine(
+                null,
+                "PPL",
+                "A Push Pull Legs routine designed to build muscle and improve overall strength with a balanced weekly split.",
+                "Medium",
+                "/images/ppl_routine.jpg"
+        ));
+
+        createRoutine(new Routine(
+                null,
+                "Full Body",
+                "A full body routine ideal for beginners who want to train all major muscle groups in a simple and effective way.",
+                "Easy",
+                "/images/full_body_routine.jpg"
+        ));
+
+        createRoutine(new Routine(
+                null,
+                "Upper-Lower",
+                "An upper lower split focused on building strength and muscle by dividing workouts between upper-body and lower-body days.",
+                "Hard",
+                "/images/upper_lower_routine.jpg"
+        ));
     }
 
     public Collection<Routine> getAllRoutines() {

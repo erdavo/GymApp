@@ -281,11 +281,17 @@ a {
 .card-actions {
     margin-top: auto;
     display: flex;
-    gap: 10px;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    gap: 8px;
+    flex-direction: column;
 }
 
+.card-actions a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px
+}
 
 /* 7. BUTTONS */
 

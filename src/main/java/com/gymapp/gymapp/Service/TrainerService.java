@@ -16,9 +16,29 @@ public class TrainerService {
     public TrainerService(){
         trainers = new ConcurrentHashMap<>();
 
-        createTrainer(new Trainer(null, "Trainer 1", "email@email.com", "City/Country, years old"));
-        createTrainer(new Trainer(null, "Trainer 2", "email@email.com", "City/Country, years old"));
-        createTrainer(new Trainer(null, "Trainer 3", "email@email.com", "City/Country, years old"));
+        createTrainer(new Trainer(
+                null,
+                "Alex Carter",
+                "alex.carter@gymapp.com",
+                "Madrid, Spain - 28 years old, Strength & Conditioning Specialist",
+                "/images/alex_carter_trainer.jpg"
+        ));
+
+        createTrainer(new Trainer(
+                null,
+                "Sofia Martinez",
+                "sofia.martinez@gymapp.com",
+                "Barcelona, Spain - 32 years old, Functional Training & HIIT Coach",
+                "/images/sofia_martinez_trainer.jpg"
+        ));
+
+        createTrainer(new Trainer(
+                null,
+                "Daniel Lopez",
+                "daniel.lopez@gymapp.com",
+                "Valencia, Spain - 35 years old, Personal Trainer & Nutrition Expert",
+                "/images/daniel_lopez_trainer.jpg"
+        ));
     }
 
 

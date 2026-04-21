@@ -32,7 +32,7 @@
                     <p>Register a new movement with its technical specifications.</p>
                 </div>
 
-                <form action="/exercises/new" method="POST" class="gym-form">
+                <form action="/exercises/new" method="POST" enctype="multipart/form-data" class="gym-form">
 
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -71,10 +71,19 @@
                         </div>
                     </div>
 
+
+                    <div class="form-group">
+                        <label for="image">Exercise image</label>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                    </div>
+
+
                     <div class="form-actions">
                         <button type="submit" class="add-button">SAVE EXERCISE</button>
                         <a href="/#popular-exercises" class="cancel-link">Back to home</a>
                     </div>
+
+
                 </form>
             </div>
         </div>
