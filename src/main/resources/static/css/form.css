@@ -1,22 +1,78 @@
 .routine-page {
-    min-height: calc(100vh - 70px);
+    min-height: 100%;
     padding: 60px 20px;
-    background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.95)),
-        url('/images/fondo.png') center/cover no-repeat;
+    background: #0a0a0a;
     display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.routine-form-wrapper {
+    width: 100%;
+    display: flex;
     justify-content: center;
 }
 
 .form-container {
-    width: 100%;
+    width: 80%;
     max-width: 800px;
-    /* Ancho elegante */
     background: #1a1a1a;
     border: 1px solid #333;
     border-radius: 15px;
     padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-tag {
+    color: #ff3b3b;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-header h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.highlight {
+    color: #ff3b3b;
+}
+
+.form-header p {
+    color: #bbb;
+    font-size: 15px;
+}
+
+.gym-form {
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ccc;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .form-group input,
@@ -24,61 +80,42 @@
 .form-group textarea {
     width: 100%;
     background: #252525;
-    color: #fff;
+    color: white;
     border: 2px solid #333;
     border-radius: 12px;
     padding: 14px;
-    font-size: 1rem;
-    outline: none;
+    font-size: 16px;
     font-family: inherit;
-    transition: all 0.3s ease;
+    outline: none;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: #ff3b3b;
-    background-color: #2a2a2a;
-    box-shadow: 0 0 15px rgba(255, 59, 59, 0.2);
 }
 
-/* PARA LA PRACTICA 2
-.exercise-selector {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin-top: 6px;
+.form-group textarea {
+    min-height: 130px;
 }
 
-.exercise-option {
+.form-actions {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #191919;
-    border: 1px solid #303030;
-    border-radius: 14px;
-    padding: 14px 16px;
-    color: #f2f2f2;
-    cursor: pointer;
-    transition: border-color 0.25s ease, transform 0.2s ease, background 0.2s ease;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
 }
 
-.exercise-option:hover {
-    border-color: #ff3b3b;
-    background: #1f1f1f;
-    transform: translateY(-1px);
+.cancel-link {
+    display: inline-block;
+    background: #333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
 }
 
-.exercise-option input[type="checkbox"] {
-    accent-color: #ff3b3b;
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
+.cancel-link:hover {
+    background: #444;
 }
-
-.exercise-option span {
-    color: #d9d9d9;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
-*/
