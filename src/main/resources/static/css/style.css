@@ -210,6 +210,8 @@ a {
     color: white;
 }
 
+
+
 /* 6. CARDS (Exercise, Routine, Trainer) */
 
 .card-grid {
@@ -284,6 +286,7 @@ a {
     transition: all 0.3s ease;
     margin-top: auto;
     align-self: center;
+    gap: 10px;
 }
 
 .card-button:hover,
@@ -298,14 +301,30 @@ a {
     transform: translateY(-1px) scale(0.97);
 }
 
-
-
 .exercise-button,
 .routine-button,
 .trainer-button {
     margin: 25px;
     display: flex;
     justify-content: center;
+}
+
+
+.btn-edit {
+    background-color: #333;
+    color: #ffffff;
+    border: 2px solid #555;
+}
+
+.btn-edit:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: transparent;
+    color: #888;
+    border: 2px solid #d32f2f;
 }
 
 /* 8. FOOTER */
