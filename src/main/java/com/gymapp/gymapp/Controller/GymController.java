@@ -11,7 +11,6 @@ import com.gymapp.gymapp.Service.ExerciseService;
 import com.gymapp.gymapp.Service.RoutineService;
 import com.gymapp.gymapp.Service.TrainerService;
 
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Map;
 
 @Controller

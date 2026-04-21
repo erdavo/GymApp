@@ -374,16 +374,9 @@
       "item": [
         {
           "name": "GET all trainers",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"difficulty\": \"EXTREME\"\r\n    \r\n}"
-            },
             "url": {
               "raw": "http://localhost:8080/api/trainers",
               "protocol": "http",
@@ -484,10 +477,6 @@
           "request": {
             "method": "DELETE",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Trainer 4\",\r\n    \"email\": \"trainer4@email.com\",\r\n    \"description\": \"Madrid, 30 years old\",\r\n    \"imageUrl\": \"/images/default-trainer.png\"\r\n}"
-            },
             "url": {
               "raw": "http://localhost:8080/api/trainers/1",
               "protocol": "http",
