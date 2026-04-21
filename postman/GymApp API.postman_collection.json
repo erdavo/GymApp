@@ -121,7 +121,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"id\": 4,\n\"name\": \"Incline Bench Press\",\n\"description\": \"Chest exercise\",\n\"muscleGroup\": \"Chest\",\n\"difficulty\": \"Medium\"\n}",
+              "raw": "{\n    \"name\": \"Incline Bench Press\",\n    \"description\": \"Chest exercise\",\n    \"muscleGroup\": \"Chest\",\n    \"difficulty\": \"Medium\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
