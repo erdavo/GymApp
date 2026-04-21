@@ -330,8 +330,7 @@ a {
 
 /* 7. BUTTONS */
 
-.card-button , .update-button
-{
+.card-button{
     display: inline-block;
     background: #ff3b3b;
     padding: 10px 20px;

@@ -116,6 +116,17 @@
     text-decoration: none;
 }
 
+.update-button{
+    display: inline-block;
+    background: #ff3b3b;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
 .cancel-link:hover {
     background: #444;
 }
