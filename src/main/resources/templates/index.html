@@ -90,11 +90,12 @@
                 <p>{{muscleGroup}} - {{difficulty}}</p>
                 <div class="card-actions">
                     <a href="" class="card-button">View Exercise</a>
+                    
                     <a href="/editExercise/{{id}}" class="card-button btn-edit">
                         <i class="fas fa-edit"></i> Edit
-                    </a>
-                    <a href="/exercises/delete/{{id}}" class="card-button btn-delete" 
-                    onclick="return confirm('Are you sure?')">
+                    </a> <a href="javascript:void(0)" 
+                    class="card-button btn-delete" 
+                    onclick="showDeleteModal('/exercises/delete/{{id}}')">
                         <i class="fas fa-trash"></i> Delete
                     </a>
                 </div>
@@ -125,10 +126,10 @@
                         
                         <a href="/editRoutine/{{id}}" class="card-button btn-edit">
                             <i class="fas fa-edit"></i> Edit
-                        </a>
-                        
-                        <a href="/routines/delete/{{id}}" class="card-button btn-delete" 
-                        onclick="return confirm('Are you sure you want to delete this routine?')">
+                        </a>             
+                        <a href="javascript:void(0)" 
+                        class="card-button btn-delete" 
+                        onclick="showDeleteModal('/routines/delete/{{id}}')">
                             <i class="fas fa-trash"></i> Delete
                         </a>
                     </div>
@@ -158,10 +159,10 @@
                         
                         <a href="/editTrainer/{{id}}" class="card-button btn-edit">
                             <i class="fas fa-edit"></i> Edit
-                        </a>
-                        
-                        <a href="/trainers/delete/{{id}}" class="card-button btn-delete" 
-                           onclick="return confirm('Are you sure you want to remove this trainer?')">
+                        </a>  
+                        <a href="javascript:void(0)" 
+                        class="card-button btn-delete" 
+                        onclick="showDeleteModal('/trainers/delete/{{id}}')">
                             <i class="fas fa-trash"></i> Delete
                         </a>
                     </div>
@@ -218,14 +219,28 @@
     </footer>
 
 
+    <button id="backToTop" class="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div id="deleteModal" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Are you sure?</h3>
+        <p>This action cannot be undone. The item will be permanently removed.</p>
+        <div class="modal-buttons">
+            <button id="cancelDelete" class="modal-btn btn-secondary">Cancel</button>
+            <a id="confirmDeleteLink" href="#" class="modal-btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
 
     <script src="/js/calculator.js"></script>
     <script src="/js/search.js"></script>
     <script src="/js/buttonBackToTop.js"></script>
+    <script src="/js/deleteModal.js"></script>
 
-    <button id="backToTop" class="back-to-top" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
 </body>
-
 </html>
