@@ -293,10 +293,33 @@ a {
     padding: 10px
 }
 
+.see-more-btn {
+    background: none;
+    border: none;
+    color: #ff3b3b;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.see-more-btn:hover {
+    text-decoration: underline;
+}
+
+.description-text.expanded {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+}
+
+
 /* 7. BUTTONS */
 
-.card-button,
-.add-button {
+.card-button {
     display: inline-block;
     background: #ff3b3b;
     padding: 10px 20px;
@@ -311,6 +334,26 @@ a {
     margin-top: auto;
     align-self: center;
     gap: 10px;
+}
+.add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ff3b3b;
+    padding: 20px 48px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 22px;
+    text-decoration: none;
+    border: 2px solid #ff3b3b;
+    cursor: pointer;
+    transition: 0.3s;
+    min-width: 500px;
+    width: fit-content;
+    margin: 50px auto 0 auto;
+}
+.add-button i {
+    margin-right: 12px;
 }
 
 .card-button:hover,
@@ -654,3 +697,4 @@ a {
 .btn-danger:hover {
     background: #b32a2a;
 }
+

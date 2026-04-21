@@ -88,6 +88,9 @@
                 <div class="card-content">
                     <h3>{{name}}</h3>
                     <p>{{muscleGroup}} - {{difficulty}}</p>
+                    <p class="description-text">{{description}}</p>
+                    <button type="button" class="see-more-btn" onclick="toggleDescription(this)">See more</button>
+
                     <div class="card-actions">
                         <a href="/editExercise/{{id}}" class="card-button btn-edit">
                             <i class="fas fa-edit"></i> Edit
@@ -101,9 +104,9 @@
             {{/exercises}}
         </div>
 
-        <div class="exercise-button">
-            <a href="/addExercise" class="add-button">Add Exercise</a>
-        </div>
+        <a href="/addExercise" class="add-button add-main-button">
+            <i class="fas fa-plus"></i> Add Exercise
+         </a>
 
     </section>
 
@@ -116,7 +119,8 @@
                 <img src="{{imageUrl}}" alt="Photo of {{name}}">
                 <div class="card-content">
                     <h3>{{name}}</h3>
-                    <p>{{description}} - {{difficulty}}</p>
+                    <p class="description-text">{{difficulty}} - {{description}}</p>
+                    <button type="button" class="see-more-btn" onclick="toggleDescription(this)">See more</button>
 
                     <div class="card-actions">
                         <a href="/editRoutine/{{id}}" class="card-button btn-edit">
@@ -133,7 +137,10 @@
         </div>
 
         <div class="routine-button">
-            <a href="/addRoutine" class="add-button">Add Routine</a>
+            <a href="/addRoutine" class="add-button">
+                <i class="fas fa-plus"></i>
+                Add Routine
+            </a>
         </div>
     </section>
 
@@ -146,7 +153,8 @@
                 <img src="{{imageUrl}}" alt="Photo of {{name}}">
                 <div class="card-content">
                     <h3>{{name}}</h3>
-                    <p>{{description}}</p>
+                    <p class="description-text">{{description}}</p>
+                    <button type="button" class="see-more-btn" onclick="toggleDescription(this)">See more</button>
 
                     <div class="card-actions">
                         <a href="/editTrainer/{{id}}" class="card-button btn-edit">
@@ -163,7 +171,9 @@
         </div>
 
         <div class="trainer-button">
-            <a href="/addTrainer" class="add-button">Add Trainer</a>
+            <a href="/addTrainer" class="add-button">
+                <i class="fas fa-plus"></i> Add Trainer
+            </a>
         </div>
     </section>
 
@@ -233,6 +243,7 @@
     <script src="/js/buttonBackToTop.js"></script>
     <script src="/js/deleteModal.js"></script>
     <script src="/js/navActive.js"></script>
+    <script src="/js/descriptionToggle.js"></script>
 
 </body>
 
