@@ -1,6 +1,6 @@
 package com.gymapp.gymapp.Controller;
 
-import com.gymapp.gymapp.Model.Trainer;
+import com.gymapp.gymapp.Entities.Trainer;
 import com.gymapp.gymapp.Service.TrainerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

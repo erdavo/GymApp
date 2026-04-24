@@ -1,7 +1,7 @@
 package com.gymapp.gymapp.Controller;
 
-import com.gymapp.gymapp.Model.Exercise;
-import com.gymapp.gymapp.Model.Routine;
+import com.gymapp.gymapp.Entities.Exercise;
+import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Service.RoutineService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

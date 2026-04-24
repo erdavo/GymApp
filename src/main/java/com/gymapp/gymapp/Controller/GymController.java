@@ -1,12 +1,12 @@
 package com.gymapp.gymapp.Controller;
 
-import com.gymapp.gymapp.Model.Exercise;
-import com.gymapp.gymapp.Model.Routine;
-import com.gymapp.gymapp.Model.Trainer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.gymapp.gymapp.Entities.Exercise;
+import com.gymapp.gymapp.Entities.Routine;
+import com.gymapp.gymapp.Entities.Trainer;
 import com.gymapp.gymapp.Service.ExerciseService;
 import com.gymapp.gymapp.Service.RoutineService;
 import com.gymapp.gymapp.Service.TrainerService;

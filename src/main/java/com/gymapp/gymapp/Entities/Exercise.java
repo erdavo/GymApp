@@ -1,4 +1,4 @@
-package com.gymapp.gymapp.Model;
+package com.gymapp.gymapp.Entities;
 
 public class Exercise {
     private Integer id;

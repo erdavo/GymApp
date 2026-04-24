@@ -1,8 +1,9 @@
 package com.gymapp.gymapp.Service;
 
-import com.gymapp.gymapp.Model.Routine;
-import com.gymapp.gymapp.Model.Trainer;
 import org.springframework.stereotype.Service;
+
+import com.gymapp.gymapp.Entities.Routine;
+import com.gymapp.gymapp.Entities.Trainer;
 
 import java.util.Collection;
 import java.util.Map;
