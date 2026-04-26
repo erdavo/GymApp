@@ -20,7 +20,12 @@ public class Exercise {
     private String difficulty;
     private String imageUrl;
 
-    // Relationship N:M - Many exercises can belong to many routines
+    /**
+     * Relationship N:M - Many exercises can belong to many routines
+     * mappedBy = "exercises" indicates that this is the "many" side of the
+     * relationship,
+     * and the "one" side is defined in the Routine entity with @ManyToMany.
+     */
     @ManyToMany(mappedBy = "exercises")
     private List<Routine> routines = new ArrayList<>();
 
@@ -28,8 +33,8 @@ public class Exercise {
         this.imageUrl = "/images/default-exercise.png";
     }
 
-    public Exercise(Long id, String name, String description, String muscleGroup, String difficulty, String imageUrl) {
-        this.id = id;
+    // Constructor without ID for persistence (Database handles the ID)
+    public Exercise(String name, String description, String muscleGroup, String difficulty, String imageUrl) {
         this.name = name;
         this.description = description;
         this.muscleGroup = muscleGroup;
@@ -39,8 +44,8 @@ public class Exercise {
                 : imageUrl;
     }
 
-    public Exercise(Long id, String name, String description, String muscleGroup, String difficulty) {
-        this(id, name, description, muscleGroup, difficulty, "/images/default-exercise.png");
+    public Exercise(String name, String description, String muscleGroup, String difficulty) {
+        this(name, description, muscleGroup, difficulty, "/images/default-exercise.png");
     }
 
     public Long getId() {

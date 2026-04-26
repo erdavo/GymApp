@@ -1,36 +1,53 @@
 package com.gymapp.gymapp.Entities;
 
+import jakarta.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
+
+@Entity
 public class Trainer {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String email;
     private String description;
     private String imageUrl;
-    // private List<Routine> routines; // 1:N con Routine
+
+    /**
+     * Relationship 1:N - One trainer can have many routines
+     * mappedBy = "trainer" indicates that this is the "one" side of the
+     * relationship,
+     * and the "many" side is defined in the Routine entity with @ManyToOne.
+     */
+    @OneToMany(mappedBy = "trainer")
+    private List<Routine> routines = new ArrayList<>();
 
     public Trainer() {
         this.imageUrl = "/images/default-trainer.png";
     }
-    public Trainer(Integer id, String name, String email, String description, String imageUrl) {
-        this.id = id;
+
+    // Constructor without ID for persistence (Database handles the ID)
+    public Trainer(String name, String email, String description, String imageUrl) {
         this.name = name;
         this.email = email;
         this.description = description;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
                 ? "/images/default-trainer.png"
                 : imageUrl;
-        // this.routines = new ArrayList<>();
+        this.routines = new ArrayList<>();
     }
 
-    public Trainer(Integer id, String name, String email, String description) {
-        this(id, name, email, description, "/images/default-trainer.png");
+    // Constructor without ID for persistence (Database handles the ID)
+    public Trainer(String name, String email, String description) {
+        this(name, email, description, "/images/default-trainer.png");
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,15 +85,13 @@ public class Trainer {
                 : imageUrl;
     }
 
-    /*
-     * Todavia no porque para la tarea 1 las entidades no se relacionan entre si.
-     * Para la tarea 2 se relacionan.
-     * 
-     * public List<Routine> getRoutines() { return routines; }
-     * public void setRoutines(List<Routine> routines) { this.routines = routines; }
-     * 
-     * public void addRoutine(Routine routine) {
-     * this.routines.add(routine);
-     * }
-     */
+    // Relationship methods are NOW ACTIVE for Part II
+    public List<Routine> getRoutines() {
+        return routines;
+    }
+
+    public void setRoutines(List<Routine> routines) {
+        this.routines = routines;
+    }
+
 }
