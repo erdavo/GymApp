@@ -1,37 +1,53 @@
 package com.gymapp.gymapp.Entities;
 
+import jakarta.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
+
+@Entity
 public class Routine {
-    private Integer id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private String description;
     private String difficulty;
     private String imageUrl;
-    // private List<Exercise> exercises;
+
+    // Relationship 1:N - Many routines belong to one trainer
+    @ManyToOne
+    private Trainer trainer;
+
+    // Relationship N:M - Many routines can have many exercises
+    // mappedBy = "trainer" indicates that this is the "many" side of the
+    // relationship
+    @ManyToMany
+    private List<Exercise> exercises = new ArrayList<>();
 
     public Routine() {
         this.imageUrl = "/images/default-routine.png";
     }
 
-    public Routine(Integer id, String name, String description, String difficulty, String imageUrl ) {
-        this.id = id;
+    public Routine(String name, String description, String difficulty, String imageUrl,
+            List<Exercise> exercises, Trainer trainer) {
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
                 ? "/images/default-routine.png"
                 : imageUrl;
-        // this.exercises = exercises;
+        this.exercises = (exercises != null) ? exercises : new ArrayList<>();
+        this.trainer = trainer;
     }
 
-    public Routine(Integer id, String name, String description, String difficulty) {
-        this(id, name, description, difficulty, "/images/default-routine.png");
-    }
-
-    public Integer getId() {
+    // Getters and Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,7 +62,7 @@ public class Routine {
     public String getDescription() {
         return description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -54,7 +70,7 @@ public class Routine {
     public String getDifficulty() {
         return difficulty;
     }
-    
+
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
@@ -64,12 +80,17 @@ public class Routine {
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = (imageUrl == null || imageUrl.isBlank())
-                ? "/images/default-routine.png"
-                : imageUrl;
+        this.imageUrl = imageUrl;
     }
 
-    /* Todavia no porque para la tarea 1 las entidades no se relacionan entre si. Para la tarea 2 se relacionan.
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
     public List<Exercise> getExercises() {
         return exercises;
     }
@@ -77,18 +98,4 @@ public class Routine {
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
     }
-
-    public void addExercise(Exercise exercise) {
-        exercises.add(exercise);
-    }
-
-    public void removeExercise(Exercise exercise) {
-        exercises.remove(exercise);
-    }
-
-    public void updateExercise(Exercise exercise) {
-        exercises.set(exercises.indexOf(exercise), exercise);
-    }
-    */
-
 }
