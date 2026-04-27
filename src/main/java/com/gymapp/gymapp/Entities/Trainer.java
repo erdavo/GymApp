@@ -22,7 +22,7 @@ public class Trainer {
      * and the "many" side is defined in the Routine entity with @ManyToOne.
      */
     @JsonIgnore // prevent infinite loop in REST API calls
-    @OneToMany(mappedBy = "trainer")
+    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Routine> routines = new ArrayList<>();
 
     public Trainer() {
