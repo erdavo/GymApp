@@ -1,5 +1,6 @@
-const searchInput = document.getElementById("searchInput");
-const cards = document.querySelectorAll(".exercise-card");
+const searchInput =  document.getElementById("searchInput") ||
+                        document.getElementById("routineExerciseSearch");
+const cards = document.querySelectorAll(".exercise-card, .routine-exercise-card");
 const filterButtons = document.querySelectorAll(".filters button");
 
 let activeFilter = "all";
@@ -19,7 +20,7 @@ function filterExercises() {
             card.style.display = "flex";
             visibleCount++;
         } else {
-            card.style.display = "none"; // ← esto faltaba
+            card.style.display = "none";
         }
     });
 }

@@ -52,19 +52,39 @@
                     </select>
                 </div>
 
-                <!-- PARA LA PRACTICA 2
                 <div class="form-group">
                     <label>Select exercises</label>
-                    <div class="exercise-selector">
+
+                    <div class="search-bar routine-search-bar">
+                        <input type="text" id="routineExerciseSearch" placeholder="Search exercise...">
+                    </div>
+
+                    <div class="filters routine-filters">
+                        <button type="button" data-filter="all" class="active">All</button>
+                        <button type="button" data-filter="Chest">Chest</button>
+                        <button type="button" data-filter="Back">Back</button>
+                        <button type="button" data-filter="Legs">Legs</button>
+                        <button type="button" data-filter="Arms">Arms</button>
+                        <button type="button" data-filter="Cardio">Cardio</button>
+                        <button type="button" data-filter="Abs">Abs</button>
+                    </div>
+
+                    <div class="routine-exercise-grid">
                         {{#exercises}}
-                        <label class="exercise-option">
+                        <label class="routine-exercise-card"
+                               data-name="{{name}}"
+                               data-muscle="{{muscleGroup}}">
                             <input type="checkbox" name="exerciseIds" value="{{id}}">
-                            <span>{{name}} - {{muscleGroup}} - {{difficulty}}</span>
+                            <img src="{{imageUrl}}" alt="{{name}}">
+                            <div>
+                                <h4>{{name}}</h4>
+                                <p>{{muscleGroup}} · {{difficulty}}</p>
+                            </div>
                         </label>
                         {{/exercises}}
                     </div>
                 </div>
-                -->
+
 
                 <div class="form-actions">
                     <button type="submit" class="update-button">SAVE ROUTINE</button>
@@ -74,5 +94,6 @@
         </div>
     </div>
 </section>
+<script src="/js/search.js"></script>
 </body>
 </html>
