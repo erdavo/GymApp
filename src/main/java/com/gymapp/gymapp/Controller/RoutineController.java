@@ -1,6 +1,5 @@
 package com.gymapp.gymapp.Controller;
 
-import com.gymapp.gymapp.Entities.Exercise;
 import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Service.RoutineService;
 import org.springframework.http.ResponseEntity;
