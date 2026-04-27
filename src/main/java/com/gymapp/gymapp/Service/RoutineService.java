@@ -15,8 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class RoutineService {
-    private final Map<Integer, Routine> routines;
-    private int nextId = 1;
+    private final Map<Long, Routine> routines;
+    private Long nextId = 1L;
     private final ExerciseService exerciseService ;
     private final TrainerService trainerService ;
 
@@ -26,33 +26,30 @@ public class RoutineService {
         this.routines = new ConcurrentHashMap<>();
 
         createRoutine(new Routine(
-                null,
                 "PPL",
                 "A Push Pull Legs routine designed to build muscle and improve overall strength with a balanced weekly split.",
                 "Medium",
                 "/images/ppl_routine.jpg",
-                getExercisesByIds(3, 5, 2, 8),
-                trainerService.getTrainerById(1)
+                getExercisesByIds(3L, 5L, 2L, 8L),
+                trainerService.getTrainerById(1L)
         ));
 
         createRoutine(new Routine(
-                null,
                 "Full Body",
                 "A full body routine ideal for beginners who want to train all major muscle groups in a simple and effective way.",
                 "Easy",
                 "/images/full_body_routine.jpg",
-                getExercisesByIds(3, 17, 14, 15),
-                trainerService.getTrainerById(2)
+                getExercisesByIds(3L, 17L, 14L, 15L),
+                trainerService.getTrainerById(2L)
         ));
 
         createRoutine(new Routine(
-                null,
                 "Upper-Lower",
                 "An upper lower split focused on building strength and muscle by dividing workouts between upper-body and lower-body days.",
                 "Hard",
                 "/images/upper_lower_routine.jpg",
-                getExercisesByIds(1, 2, 13, 11),
-                trainerService.getTrainerById(3)
+                getExercisesByIds(1L, 2L, 13L, 11L),
+                trainerService.getTrainerById(3L)
         ));
     }
 
@@ -60,7 +57,7 @@ public class RoutineService {
         return routines.values();
     }
 
-    public Routine getRoutineById(Integer id) {
+    public Routine getRoutineById(Long id) {
         return routines.get(id);
     }
 
@@ -76,7 +73,7 @@ public class RoutineService {
         return routine;
     }
 
-    public Routine updateRoutine(Integer id, Routine updatedRoutine) {
+    public Routine updateRoutine(Long id, Routine updatedRoutine) {
         if (routines.containsKey(id)) {
             updatedRoutine.setId(id);
             routines.put(id, updatedRoutine);
@@ -85,10 +82,10 @@ public class RoutineService {
         return null;
     }
 
-    private List<Exercise> getExercisesByIds(Integer... ids) {
+    private List<Exercise> getExercisesByIds(Long... ids) {
         List<Exercise> exercises = new ArrayList<>();
 
-        for (Integer id : ids) {
+        for (Long id : ids) {
             Exercise exercise = exerciseService.getExerciseById(id);
 
             if (exercise != null) {
@@ -98,11 +95,11 @@ public class RoutineService {
 
         return exercises;
     }
-    public Routine deleteRoutine(Integer id) {
+    public Routine deleteRoutine(Long id) {
         return routines.remove(id);
     }
 
-    public Routine patchRoutine(Integer id, Map<String, Object> updates) {
+    public Routine patchRoutine(Long id, Map<String, Object> updates) {
         Routine routine = routines.get(id);
 
         if (routine != null) {

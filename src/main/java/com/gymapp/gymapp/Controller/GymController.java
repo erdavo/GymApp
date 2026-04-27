@@ -71,7 +71,7 @@ public class GymController {
     }
 
     @GetMapping("/editExercise/{id}")
-    public String editExercisePage(@PathVariable Integer id, Model model) {
+    public String editExercisePage(@PathVariable Long id, Model model) {
         Exercise exercise = exerciseService.getExerciseById(id);
         if (exercise != null) {
             model.addAttribute("exercise", exercise);
@@ -81,7 +81,7 @@ public class GymController {
     }
     
     @GetMapping("/editRoutine/{id}")
-    public String editRoutinePage(@PathVariable Integer id, Model model) {
+    public String editRoutinePage(@PathVariable Long id, Model model) {
         Routine routine = routineService.getRoutineById(id);
         if (routine != null) {
             model.addAttribute("routine", routine);
@@ -91,7 +91,7 @@ public class GymController {
     }
 
     @GetMapping("/editTrainer/{id}")
-    public String editTrainerPage(@PathVariable Integer id, Model model) {
+    public String editTrainerPage(@PathVariable Long id, Model model) {
         Trainer trainer = trainerService.getTrainerById(id);
         if (trainer != null) {
             model.addAttribute("trainer", trainer);
@@ -101,7 +101,7 @@ public class GymController {
     }
 
     @PatchMapping("/exercises/update")
-    public String patchExercise(@RequestParam Integer id, @RequestParam Map<String, Object> updates) {
+    public String patchExercise(@RequestParam Long id, @RequestParam Map<String, Object> updates) {
 
         updates.remove("id");
         updates.remove("_method");
@@ -115,7 +115,7 @@ public class GymController {
     }
 
     @PatchMapping("/routines/update")
-    public String patchRoutine(@RequestParam Integer id, @RequestParam Map<String, Object> updates) {
+    public String patchRoutine(@RequestParam Long id, @RequestParam Map<String, Object> updates) {
 
         updates.remove("id");
         updates.remove("_method");
@@ -129,7 +129,7 @@ public class GymController {
     }
 
     @PatchMapping("/trainers/update")
-    public String patchTrainer(@RequestParam Integer id, @RequestParam Map<String, Object> updates) {
+    public String patchTrainer(@RequestParam Long id, @RequestParam Map<String, Object> updates) {
 
         updates.remove("id");
         updates.remove("_method");
@@ -143,19 +143,19 @@ public class GymController {
     }
 
     @GetMapping("/exercises/delete/{id}")
-    public String deleteExercise(@PathVariable Integer id) {
+    public String deleteExercise(@PathVariable Long id) {
         exerciseService.deleteExercise(id);
         return "redirect:/#popular-exercises";
     }
 
     @GetMapping("/routines/delete/{id}")
-    public String deleteRoutine(@PathVariable Integer id) {
+    public String deleteRoutine(@PathVariable Long id) {
         routineService.deleteRoutine(id);
         return "redirect:/#featured-routines";
     }
 
     @GetMapping("/trainers/delete/{id}")
-    public String deleteTrainer(@PathVariable Integer id) {
+    public String deleteTrainer(@PathVariable Long id) {
         trainerService.deleteTrainer(id);
         return "redirect:/#personal-trainers";
     }

@@ -10,7 +10,7 @@ public class Routine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
     private String description;
@@ -32,9 +32,9 @@ public class Routine {
         this.imageUrl = "/images/default-routine.png";
     }
 
-    public Routine(Integer id, String name, String description, String difficulty, String imageUrl,
+    // Constructor without ID for persistence (Database handles the ID)
+    public Routine(String name, String description, String difficulty, String imageUrl,
             List<Exercise> exercises, Trainer trainer) {
-        this.id =  id ;
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
@@ -45,12 +45,17 @@ public class Routine {
         this.trainer = trainer;
     }
 
+    // Constructor without ID for persistence (Database handles the ID)
+    public Routine(String name, String description, String difficulty, List<Exercise> exercises, Trainer trainer) {
+        this(name, description, difficulty,"/images/default-trainer.png", exercises, trainer);
+    }
+
     // Getters and Setters
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

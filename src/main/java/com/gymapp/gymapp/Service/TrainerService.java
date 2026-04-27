@@ -5,47 +5,50 @@ import org.springframework.stereotype.Service;
 import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Entities.Trainer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class TrainerService {
-    private final Map<Integer, Trainer> trainers;
-    private int nextId = 1;
+    private final Map<Long, Trainer> trainers;
+    private Long nextId = 1L;
 
     public TrainerService(){
         trainers = new ConcurrentHashMap<>();
 
         createTrainer(new Trainer(
-                null,
                 "Alex Carter",
                 "alex.carter@gymapp.com",
                 "Madrid, Spain - 28 years old, Strength & Conditioning Specialist",
-                "/images/alex_carter_trainer.jpg"
+                "/images/alex_carter_trainer.jpg",
+                new ArrayList<>()
+
         ));
 
         createTrainer(new Trainer(
-                null,
                 "Sofia Martinez",
                 "sofia.martinez@gymapp.com",
                 "Barcelona, Spain - 32 years old, Functional Training & HIIT Coach",
-                "/images/sofia_martinez_trainer.jpg"
+                "/images/sofia_martinez_trainer.jpg",
+                new ArrayList<>()
+
         ));
 
         createTrainer(new Trainer(
-                null,
                 "Daniel Lopez",
                 "daniel.lopez@gymapp.com",
                 "Valencia, Spain - 35 years old, Personal Trainer & Nutrition Expert",
-                "/images/daniel_lopez_trainer.jpg"
+                "/images/daniel_lopez_trainer.jpg",
+                new ArrayList<>()
         ));
     }
 
 
     public Collection<Trainer> getAllTrainers() { return trainers.values(); }
 
-    public Trainer getTrainerById(Integer id) {
+    public Trainer getTrainerById(Long id) {
         return trainers.get(id);
     }
 
@@ -56,7 +59,7 @@ public class TrainerService {
         return trainer;
     }
 
-    public Trainer updateTrainer(Integer id, Trainer updatedTrainer) {
+    public Trainer updateTrainer(Long id, Trainer updatedTrainer) {
         if (trainers.containsKey(id)) {
             updatedTrainer.setId(id);
             trainers.put(id, updatedTrainer);
@@ -65,11 +68,11 @@ public class TrainerService {
         return null;
     }
 
-    public Trainer deleteTrainer(Integer id) {
+    public Trainer deleteTrainer(Long id) {
         return trainers.remove(id);
     }
 
-    public Trainer patchTrainer(Integer id, Map<String, Object> updates) {
+    public Trainer patchTrainer(Long id, Map<String, Object> updates) {
         Trainer trainer = trainers.get(id);
 
         if (trainer != null) {

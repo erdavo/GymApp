@@ -18,7 +18,6 @@ public class ExerciseService {
         this.exerciseRepository = exerciseRepository;
         if (exerciseRepository.count() == 0) {
             createExercise(new Exercise(
-                    null,
                     "Push Up",
                     "A bodyweight chest exercise that also works the shoulders and triceps. Keep your body straight and lower yourself under control before pushing back up.",
                     "Chest",
@@ -27,7 +26,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Squat",
                     "A fundamental lower-body exercise that targets the quadriceps, glutes, and hamstrings. Keep your chest up and lower your hips until your thighs are parallel to the floor.",
                     "Legs",
@@ -36,7 +34,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Bench Press",
                     "A classic strength exercise for building the chest, shoulders, and triceps. Lower the bar with control to the chest and press it back up powerfully.",
                     "Chest",
@@ -45,7 +42,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Dips",
                     "A powerful upper-body exercise that mainly targets the chest and triceps. Lower your body slowly and push back up while keeping control of the movement.",
                     "Chest",
@@ -54,7 +50,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Pull Up",
                     "A bodyweight back exercise that develops the lats, upper back, and biceps. Pull yourself up until your chin passes the bar, then lower with control.",
                     "Back",
@@ -63,7 +58,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Deadlift",
                     "A compound exercise that strengthens the back, glutes, hamstrings, and core. Lift the weight by driving through the legs while keeping your back straight.",
                     "Back",
@@ -72,7 +66,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Lunges",
                     "A lower-body exercise that improves balance and works the quadriceps, glutes, and hamstrings. Step forward, lower your body, and return to the starting position.",
                     "Legs",
@@ -81,7 +74,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Shoulder Press",
                     "An upper-body exercise focused on the shoulders and triceps. Press the weight overhead in a controlled motion and lower it back down steadily.",
                     "Arms",
@@ -90,7 +82,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Bicep Curl",
                     "An isolation exercise for the biceps. Curl the weight upward without swinging your body, then lower it slowly to maximize muscle activation.",
                     "Arms",
@@ -99,7 +90,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Tricep Extension",
                     "An isolation exercise that targets the triceps. Extend the arms fully and return to the starting position with control for proper muscle engagement.",
                     "Arms",
@@ -108,7 +98,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Plank",
                     "A core stability exercise that strengthens the abs, lower back, and shoulders. Hold your body in a straight line while keeping the core engaged.",
                     "Abs",
@@ -117,7 +106,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Crunch",
                     "A basic abdominal exercise that focuses on the upper abs. Lift your shoulders off the floor using your core and lower back down slowly.",
                     "Abs",
@@ -126,7 +114,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Lat Pulldown",
                     "A machine-based back exercise that targets the latissimus dorsi and upper back. Pull the bar down toward your upper chest and return it slowly.",
                     "Back",
@@ -135,7 +122,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Leg Press",
                     "A machine exercise for building leg strength, especially in the quadriceps and glutes. Push the platform away in a controlled movement without locking the knees.",
                     "Legs",
@@ -144,7 +130,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Romanian Deadlift",
                     "A lower-body and posterior-chain exercise that emphasizes the hamstrings and glutes. Hinge at the hips while keeping the back straight and the weight close to the body.",
                     "Legs",
@@ -153,7 +138,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Lateral Raise",
                     "A shoulder isolation exercise that targets the side delts. Raise the weights to shoulder height with slight control and lower them slowly.",
                     "Arms",
@@ -162,7 +146,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Barbell Row",
                     "A compound back exercise that builds thickness in the upper and middle back. Pull the bar toward your torso while maintaining a stable bent-over position.",
                     "Back",
@@ -171,7 +154,6 @@ public class ExerciseService {
             ));
 
             createExercise(new Exercise(
-                    null,
                     "Treadmill Running",
                     "A cardio exercise that helps improve endurance, stamina, and cardiovascular health. Maintain a steady pace or vary the intensity with intervals.",
                     "Cardio",
@@ -186,7 +168,7 @@ public class ExerciseService {
         return exerciseRepository.findAll();
     }
 
-    public Exercise getExerciseById(Integer id) {
+    public Exercise getExerciseById(Long id) {
         return exerciseRepository.findById(id).orElse(null);
     }
 
@@ -194,7 +176,7 @@ public class ExerciseService {
         return exerciseRepository.save(exercise);
     }
 
-    public Exercise updateExercise(Integer id, Exercise updatedExercise) {
+    public Exercise updateExercise(Long id, Exercise updatedExercise) {
         if (!exerciseRepository.existsById(id)) {
             return null;
         }
@@ -203,7 +185,7 @@ public class ExerciseService {
         return exerciseRepository.save(updatedExercise);
     }
 
-    public Exercise deleteExercise(Integer id) {
+    public Exercise deleteExercise(Long id) {
         Exercise exercise = getExerciseById(id);
 
         if (exercise != null) {
@@ -213,7 +195,7 @@ public class ExerciseService {
         return exercise;
     }
 
-    public Exercise patchExercise(Integer id, Map<String, Object> updates) {
+    public Exercise patchExercise(Long id, Map<String, Object> updates) {
         Exercise exercise = getExerciseById(id);
 
         if (exercise == null) {

@@ -9,8 +9,7 @@ import java.util.ArrayList;
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Long id;
     private String name;
     private String email;
     private String description;
@@ -31,8 +30,7 @@ public class Trainer {
     }
 
     // Constructor without ID for persistence (Database handles the ID)
-    public Trainer(Integer id, String name, String email, String description, String imageUrl) {
-        this.id = id ;
+    public Trainer(String name, String email, String description, String imageUrl, List<Routine> routines) {
         this.name = name;
         this.email = email;
         this.description = description;
@@ -43,15 +41,15 @@ public class Trainer {
     }
 
     // Constructor without ID for persistence (Database handles the ID)
-    public Trainer(Integer id, String name, String email, String description) {
-        this(id, name, email, description, "/images/default-trainer.png");
+    public Trainer(String name, String email, String description, List<Routine> routines) {
+        this(name, email, description,"/images/default-trainer.png", routines);
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

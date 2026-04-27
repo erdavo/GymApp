@@ -24,7 +24,7 @@ public class RoutineController {
     }
 
     @GetMapping("/api/routines/{id}")
-    public ResponseEntity<Routine> getRoutineById(@PathVariable Integer id) {
+    public ResponseEntity<Routine> getRoutineById(@PathVariable Long id) {
         Routine routine = routineService.getRoutineById(id);
 
         if (routine != null) {
@@ -41,7 +41,7 @@ public class RoutineController {
     }
 
     @PutMapping("/api/routines/{id}")
-    public ResponseEntity<Routine> updateRoutine(@PathVariable Integer id, @RequestBody Routine updatedRoutine) {
+    public ResponseEntity<Routine> updateRoutine(@PathVariable Long id, @RequestBody Routine updatedRoutine) {
         Routine routine = routineService.updateRoutine(id, updatedRoutine);
 
         if (routine != null) {
@@ -52,7 +52,7 @@ public class RoutineController {
     }
 
     @DeleteMapping("/api/routines/{id}")
-    public ResponseEntity<Routine> deleteRoutine(@PathVariable Integer id) {
+    public ResponseEntity<Routine> deleteRoutine(@PathVariable Long id) {
         Routine routine = routineService.getRoutineById(id);
 
         if (routine != null) {
@@ -64,7 +64,7 @@ public class RoutineController {
     }
 
     @PatchMapping("/api/routines/{id}")
-    public ResponseEntity<Routine> patchRoutine(@PathVariable Integer id, @RequestBody Map<String, Object> updates) {
+    public ResponseEntity<Routine> patchRoutine(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
         Routine routine = routineService.patchRoutine(id, updates);
 
         if (routine != null) {
