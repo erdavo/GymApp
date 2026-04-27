@@ -1,121 +1,64 @@
 package com.gymapp.gymapp.Service;
 
-
-import com.gymapp.gymapp.Entities.Exercise;
+import com.gymapp.gymapp.Entities.Routine;
+import com.gymapp.gymapp.Repository.RoutineRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gymapp.gymapp.Entities.Routine;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
+import java.util.Optional;
 
 @Service
 public class RoutineService {
-    private final Map<Long, Routine> routines;
-    private Long nextId = 1L;
-    private final ExerciseService exerciseService ;
-    private final TrainerService trainerService ;
 
-    public RoutineService(ExerciseService exerciseService, TrainerService trainerService) {
-        this.exerciseService = exerciseService;
-        this.trainerService = trainerService;
-        this.routines = new ConcurrentHashMap<>();
+    @Autowired
+    private RoutineRepository repository;
 
-        createRoutine(new Routine(
-                "PPL",
-                "A Push Pull Legs routine designed to build muscle and improve overall strength with a balanced weekly split.",
-                "Medium",
-                "/images/ppl_routine.jpg",
-                getExercisesByIds(3L, 5L, 2L, 8L),
-                trainerService.getTrainerById(1L)
-        ));
-
-        createRoutine(new Routine(
-                "Full Body",
-                "A full body routine ideal for beginners who want to train all major muscle groups in a simple and effective way.",
-                "Easy",
-                "/images/full_body_routine.jpg",
-                getExercisesByIds(3L, 17L, 14L, 15L),
-                trainerService.getTrainerById(2L)
-        ));
-
-        createRoutine(new Routine(
-                "Upper-Lower",
-                "An upper lower split focused on building strength and muscle by dividing workouts between upper-body and lower-body days.",
-                "Hard",
-                "/images/upper_lower_routine.jpg",
-                getExercisesByIds(1L, 2L, 13L, 11L),
-                trainerService.getTrainerById(3L)
-        ));
-    }
-
+    // Retrieve all routines from the database
     public Collection<Routine> getAllRoutines() {
-        return routines.values();
+        return repository.findAll();
     }
 
+    // Find a specific routine by its ID
     public Routine getRoutineById(Long id) {
-        return routines.get(id);
+        return repository.findById(id).orElse(null);
     }
 
+    // Persist a new routine in the database
     public Routine createRoutine(Routine routine) {
-        routine.setId(nextId);
-        routines.put(nextId, routine);
-        nextId++;
-
-        if (routine.getTrainer() != null) {
-            routine.getTrainer().getRoutines().add(routine);
-        }
-
-        return routine;
+        return repository.save(routine);
     }
 
+    // Update an existing routine completely (PUT equivalent)
     public Routine updateRoutine(Long id, Routine updatedRoutine) {
-        if (routines.containsKey(id)) {
+        if (repository.existsById(id)) {
             updatedRoutine.setId(id);
-            routines.put(id, updatedRoutine);
-            return updatedRoutine;
+            return repository.save(updatedRoutine);
         }
         return null;
     }
 
-    private List<Exercise> getExercisesByIds(Long... ids) {
-        List<Exercise> exercises = new ArrayList<>();
-
-        for (Long id : ids) {
-            Exercise exercise = exerciseService.getExerciseById(id);
-
-            if (exercise != null) {
-                exercises.add(exercise);
-            }
-        }
-
-        return exercises;
-    }
-    public Routine deleteRoutine(Long id) {
-        return routines.remove(id);
+    // Remove a routine from the database
+    public void deleteRoutine(Long id) {
+        repository.deleteById(id);
     }
 
+    // Apply partial updates to a routine (PATCH equivalent)
     public Routine patchRoutine(Long id, Map<String, Object> updates) {
-        Routine routine = routines.get(id);
+        Optional<Routine> op = repository.findById(id);
 
-        if (routine != null) {
-            if (updates.containsKey("name")) {
+        if (op.isPresent()) {
+            Routine routine = op.get();
+            if (updates.containsKey("name"))
                 routine.setName((String) updates.get("name"));
-            }
-            if (updates.containsKey("description")) {
+            if (updates.containsKey("description"))
                 routine.setDescription((String) updates.get("description"));
-            }
-            if (updates.containsKey("difficulty")) {
+            if (updates.containsKey("difficulty"))
                 routine.setDifficulty((String) updates.get("difficulty"));
-            }
-            if (updates.containsKey("imageUrl")) {
+            if (updates.containsKey("imageUrl"))
                 routine.setImageUrl((String) updates.get("imageUrl"));
-            }
-            return routine;
+            return repository.save(routine);
         }
         return null;
     }

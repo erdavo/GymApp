@@ -1,6 +1,5 @@
 package com.gymapp.gymapp.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -18,21 +17,20 @@ public class Routine {
     private String imageUrl;
 
     // Relationship 1:N - Many routines belong to one trainer
-
     @ManyToOne
     private Trainer trainer;
 
-    // Relationship N:M - Many routines can have many exercises
-    // mappedBy = "trainer" indicates that this is the "many" side of the
-    // relationship
+    // Relationship N:M - A routine can contain many exercises,
+    // and an exercise can belong to many routines
     @ManyToMany
     private List<Exercise> exercises = new ArrayList<>();
 
+    // Mandatory empty constructor for JPA
     public Routine() {
         this.imageUrl = "/images/default-routine.png";
     }
 
-    // Constructor without ID for persistence (Database handles the ID)
+    // Constructor for programmatic database population (No ID required)
     public Routine(String name, String description, String difficulty, String imageUrl,
             List<Exercise> exercises, Trainer trainer) {
         this.name = name;
@@ -45,9 +43,9 @@ public class Routine {
         this.trainer = trainer;
     }
 
-    // Constructor without ID for persistence (Database handles the ID)
+    // Alternative constructor with default image
     public Routine(String name, String description, String difficulty, List<Exercise> exercises, Trainer trainer) {
-        this(name, description, difficulty,"/images/default-trainer.png", exercises, trainer);
+        this(name, description, difficulty, "/images/default-routine.png", exercises, trainer);
     }
 
     // Getters and Setters
