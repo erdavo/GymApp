@@ -1,4 +1,4 @@
-package com.gymapp.gymapp.Controller;
+package com.gymapp.gymapp.RestController;
 
 import com.gymapp.gymapp.Entities.Exercise;
 import com.gymapp.gymapp.Service.ExerciseService;
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Map;
-
 
 @RestController
 public class ExerciseController {

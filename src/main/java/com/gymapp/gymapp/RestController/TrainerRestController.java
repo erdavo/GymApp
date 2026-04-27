@@ -1,4 +1,4 @@
-package com.gymapp.gymapp.Controller;
+package com.gymapp.gymapp.RestController;
 
 import com.gymapp.gymapp.Entities.Trainer;
 import com.gymapp.gymapp.Service.TrainerService;
@@ -12,7 +12,9 @@ import java.util.Map;
 public class TrainerController {
     private final TrainerService trainerService;
 
-    public TrainerController(TrainerService trainerService) { this.trainerService = trainerService; }
+    public TrainerController(TrainerService trainerService) {
+        this.trainerService = trainerService;
+    }
 
     @GetMapping("/api/trainers")
     public ResponseEntity<Collection<Trainer>> getAllTrainers() {

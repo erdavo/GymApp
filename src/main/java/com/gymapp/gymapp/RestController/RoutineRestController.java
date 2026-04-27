@@ -1,4 +1,4 @@
-package com.gymapp.gymapp.Controller;
+package com.gymapp.gymapp.RestController;
 
 import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Service.RoutineService;
