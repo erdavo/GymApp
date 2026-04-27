@@ -42,7 +42,7 @@ public class ExerciseService {
 
     // Remove a exercise from the database
     public void deleteExercise(Long id) {
-            exerciseRepository.deleteById(id);
+        exerciseRepository.deleteById(id);
     }
 
     // Apply partial updates to a exercise (PATCH equivalent)
