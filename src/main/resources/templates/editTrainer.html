@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,66 +9,68 @@
     <link rel="stylesheet" href="/css/form.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<header class="navbar">
-    <div class="logo"><a href="/">Gym<span>App</span></a></div>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="/#popular-exercises">Exercises</a></li>
-            <li><a href="/#featured-routines">Routines</a></li>
-            <li><a href="/#personal-trainers">Personal Trainers</a></li>
-            <li><a href="/#bmr-calculator">BMR Calculator</a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="navbar">
+        <div class="logo"><a href="/">Gym<span>App</span></a></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/#popular-exercises">Exercises</a></li>
+                <li><a href="/#featured-routines">Routines</a></li>
+                <li><a href="/#personal-trainers">Personal Trainers</a></li>
+                <li><a href="/#bmr-calculator">BMR Calculator</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<section class="routine-page">
-    <div class="routine-form-wrapper">
-        <div class="form-container">
-            <div class="form-header">
-                <p class="form-tag">Trainer Editor</p>
-                <h2>EDIT <span class="highlight">{{trainer.name}}</span></h2>
-                <p>Update the trainer information and profile description.</p>
+    <section class="routine-page">
+        <div class="routine-form-wrapper">
+            <div class="form-container">
+                <div class="form-header">
+                    <p class="form-tag">Trainer Editor</p>
+                    <h2>EDIT <span class="highlight">{{trainer.name}}</span></h2>
+                    <p>Update the trainer information and profile description.</p>
+                </div>
+
+                <form action="/trainers/update" method="POST" class="gym-form">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="id" value="{{trainer.id}}">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" value="{{trainer.name}}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="{{trainer.email}}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Profile Biography</label>
+                        <textarea id="description" name="description" rows="5">{{trainer.description}}</textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="update-button">Save Changes</button>
+                        <a href="/#personal-trainers" class="cancel-link">Cancel</a>
+                    </div>
+                </form>
             </div>
-
-            <form action="/trainers/update" method="POST" class="gym-form">
-                <input type="hidden" name="_method" value="PATCH">
-                <input type="hidden" name="id" value="{{trainer.id}}">
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" value="{{trainer.name}}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" value="{{trainer.email}}" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Profile Biography</label>
-                    <textarea id="description" name="description" rows="5">{{trainer.description}}</textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="update-button">Save Changes</button>
-                    <a href="/#personal-trainers" class="cancel-link">Cancel</a>
-                </div>
-            </form>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer class="footer">
-    <p>© 2026 GymApp | Trainer Management</p>
-</footer>
+    <footer class="footer">
+        <p>© 2026 GymApp | Trainer Management</p>
+    </footer>
 
-<button id="backToTop" class="back-to-top">
-    <i class="fas fa-arrow-up"></i>
-</button>
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-<script src="/js/buttonBackToTop.js"></script>
+    <script src="/js/buttonBackToTop.js"></script>
 </body>
+
 </html>

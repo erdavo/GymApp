@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <header class="navbar">
         <div class="logo"><a href="/">Gym<span>App</span></a></div>
@@ -30,6 +32,7 @@
                 </div>
 
                 <form action="/routines/update" method="POST" class="gym-form">
+                    <input type="hidden" name="_method" value="patch">
                     <input type="hidden" name="id" value="{{routine.id}}">
                     <div class="form-row">
                         <div class="form-group">
@@ -69,10 +72,9 @@
 
                         <div class="routine-exercise-grid">
                             {{#exercises}}
-                            <label class="routine-exercise-card"
-                                   data-name="{{name}}"
-                                   data-muscle="{{muscleGroup}}">
-                                <input type="checkbox" name="exerciseIds" value="{{id}}" {{#selected}}checked{{/selected}}>
+                            <label class="routine-exercise-card" data-name="{{name}}" data-muscle="{{muscleGroup}}">
+                                <input type="checkbox" name="exerciseIds" value="{{id}}"
+                                    {{#selected}}checked{{/selected}}>
                                 <img src="{{imageUrl}}" alt="{{name}}">
                                 <div>
                                     <h4>{{name}}</h4>
@@ -88,7 +90,7 @@
                         <select id="trainerId" name="trainerId" required>
                             {{#trainers}}
                             <option value="{{id}}" {{#selected}}selected{{/selected}}>
-                            {{name}} - {{email}}
+                                {{name}} - {{email}}
                             </option>
                             {{/trainers}}
                         </select>
@@ -104,4 +106,5 @@
     </section>
     <script src="/js/search.js"></script>
 </body>
+
 </html>
