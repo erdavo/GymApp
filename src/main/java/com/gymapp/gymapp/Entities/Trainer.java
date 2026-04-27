@@ -21,7 +21,7 @@ public class Trainer {
      * relationship,
      * and the "many" side is defined in the Routine entity with @ManyToOne.
      */
-    @JsonIgnore
+    @JsonIgnore // prevent infinite loop in REST API calls
     @OneToMany(mappedBy = "trainer")
     private List<Routine> routines = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class Trainer {
 
     // Constructor without ID for persistence (Database handles the ID)
     public Trainer(String name, String email, String description, List<Routine> routines) {
-        this(name, email, description,"/images/default-trainer.png", routines);
+        this(name, email, description, "/images/default-trainer.png", routines);
     }
 
     public Long getId() {
