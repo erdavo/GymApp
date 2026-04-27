@@ -30,9 +30,7 @@
                 </div>
 
                 <form action="/routines/update" method="POST" class="gym-form">
-                    <input type="hidden" name="_method" value="patch">
                     <input type="hidden" name="id" value="{{routine.id}}">
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Routine Name</label>
@@ -74,11 +72,11 @@
                             <label class="routine-exercise-card"
                                    data-name="{{name}}"
                                    data-muscle="{{muscleGroup}}">
-                                <input type="checkbox" name="exerciseIds" value="{{id}}">
+                                <input type="checkbox" name="exerciseIds" value="{{id}}" {{#selected}}checked{{/selected}}>
                                 <img src="{{imageUrl}}" alt="{{name}}">
                                 <div>
                                     <h4>{{name}}</h4>
-                                    <p>{{muscleGroup}} Â· {{difficulty}}</p>
+                                    <p>{{muscleGroup}} · {{difficulty}}</p>
                                 </div>
                             </label>
                             {{/exercises}}
@@ -88,9 +86,10 @@
                     <div class="form-group">
                         <label for="trainerId">Select trainer</label>
                         <select id="trainerId" name="trainerId" required>
-                            <option value="" disabled selected>Select trainer...</option>
                             {{#trainers}}
-                            <option value="{{id}}">{{name}} - {{email}}</option>
+                            <option value="{{id}}" {{#selected}}selected{{/selected}}>
+                            {{name}} - {{email}}
+                            </option>
                             {{/trainers}}
                         </select>
                     </div>

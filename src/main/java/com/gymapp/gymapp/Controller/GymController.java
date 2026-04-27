@@ -11,6 +11,7 @@ import com.gymapp.gymapp.Service.ExerciseService;
 import com.gymapp.gymapp.Service.RoutineService;
 import com.gymapp.gymapp.Service.TrainerService;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -58,12 +59,34 @@ public class GymController {
         exerciseService.createExercise(exercise);
         return "redirect:/#popular-exercises";
     }
-
     @PostMapping("/routines/new")
-    public String createRoutine(@ModelAttribute Routine routine) {
+    public String createRoutine(
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam String difficulty,
+            @RequestParam(required = false) List<Long> exerciseIds,
+            @RequestParam Long trainerId) {
+        Routine routine = new Routine();
+
+        routine.setName(name);
+        routine.setDescription(description);
+        routine.setDifficulty(difficulty);
+
+        List<Exercise> selectedExercises = exerciseService.getAllExercises()
+                .stream()
+                .filter(exercise -> exerciseIds != null && exerciseIds.contains(exercise.getId()))
+                .toList();
+
+        routine.setExercises(selectedExercises);
+
+        Trainer selectedTrainer = trainerService.getTrainerById(trainerId);
+        routine.setTrainer(selectedTrainer);
+
         routineService.createRoutine(routine);
+
         return "redirect:/#featured-routines";
     }
+
 
     @PostMapping("/trainers/new")
     public String createTrainer(@ModelAttribute Trainer trainer) {
@@ -80,16 +103,44 @@ public class GymController {
         }
         return "redirect:/";
     }
-    
+
     @GetMapping("/editRoutine/{id}")
     public String editRoutinePage(@PathVariable Long id, Model model) {
         Routine routine = routineService.getRoutineById(id);
+
         if (routine != null) {
+            List<Map<String, Object>> exercisesWithSelected = exerciseService.getAllExercises()
+                    .stream()
+                    .map(exercise -> Map.<String, Object>of(
+                            "id", exercise.getId(),
+                            "name", exercise.getName(),
+                            "muscleGroup", exercise.getMuscleGroup(),
+                            "difficulty", exercise.getDifficulty(),
+                            "imageUrl", exercise.getImageUrl(),
+                            "selected", routine.getExercises()
+                                    .stream()
+                                    .anyMatch(selectedExercise -> selectedExercise.getId().equals(exercise.getId()))
+                    ))
+                    .toList();
+
+            List<Map<String, Object>> trainersWithSelected = trainerService.getAllTrainers()
+                    .stream()
+                    .map(trainer -> Map.<String, Object>of(
+                            "id", trainer.getId(),
+                            "name", trainer.getName(),
+                            "email", trainer.getEmail(),
+                            "selected", routine.getTrainer() != null &&
+                                    routine.getTrainer().getId().equals(trainer.getId())
+                    ))
+                    .toList();
+
             model.addAttribute("routine", routine);
-            model.addAttribute("exercises", exerciseService.getAllExercises());
-            model.addAttribute("trainers", trainerService.getAllTrainers());
+            model.addAttribute("exercises", exercisesWithSelected);
+            model.addAttribute("trainers", trainersWithSelected);
+
             return "editRoutine";
         }
+
         return "redirect:/";
     }
 
@@ -117,16 +168,35 @@ public class GymController {
         return "redirect:/#popular-exercises";
     }
 
-    @PatchMapping("/routines/update")
-    public String patchRoutine(@RequestParam Long id, @RequestParam Map<String, Object> updates) {
+    @PostMapping("/routines/update")
+    public String patchRoutine(
+            @RequestParam Long id,
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam String difficulty,
+            @RequestParam(required = false) List<Long> exerciseIds,
+            @RequestParam Long trainerId) {
 
-        updates.remove("id");
-        updates.remove("_method");
-        updates.remove("_csrf");
+        Routine routine = routineService.getRoutineById(id);
 
-        updates.values().removeIf(value -> value == null || value.toString().trim().isEmpty());
+        if (routine != null) {
+            routine.setName(name);
+            routine.setDescription(description);
+            routine.setDifficulty(difficulty);
 
-        routineService.patchRoutine(id, updates);
+            // IMPORTANTE: lista mutable (no usar toList())
+            List<Exercise> selectedExercises = exerciseService.getAllExercises()
+                    .stream()
+                    .filter(exercise -> exerciseIds != null && exerciseIds.contains(exercise.getId()))
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+
+            routine.setExercises(selectedExercises);
+
+            Trainer selectedTrainer = trainerService.getTrainerById(trainerId);
+            routine.setTrainer(selectedTrainer);
+
+            routineService.updateRoutine(id, routine);
+        }
 
         return "redirect:/#featured-routines";
     }
