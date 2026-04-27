@@ -1,10 +1,12 @@
 package com.gymapp.gymapp.Service;
 
 
+import com.gymapp.gymapp.Entities.Exercise;
 import org.springframework.stereotype.Service;
 
 import com.gymapp.gymapp.Entities.Routine;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -29,12 +31,7 @@ public class RoutineService {
                 "A Push Pull Legs routine designed to build muscle and improve overall strength with a balanced weekly split.",
                 "Medium",
                 "/images/ppl_routine.jpg",
-                List.of(
-                        exerciseService.getExerciseById(3),
-                        exerciseService.getExerciseById(5),
-                        exerciseService.getExerciseById(2),
-                        exerciseService.getExerciseById(8)
-                ),
+                getExercisesByIds(3, 5, 2, 8),
                 trainerService.getTrainerById(1)
         ));
 
@@ -44,12 +41,7 @@ public class RoutineService {
                 "A full body routine ideal for beginners who want to train all major muscle groups in a simple and effective way.",
                 "Easy",
                 "/images/full_body_routine.jpg",
-                List.of(
-                        exerciseService.getExerciseById(1),
-                        exerciseService.getExerciseById(2),
-                        exerciseService.getExerciseById(13),
-                        exerciseService.getExerciseById(11)
-                ),
+                getExercisesByIds(3, 17, 14, 15),
                 trainerService.getTrainerById(2)
         ));
 
@@ -59,12 +51,7 @@ public class RoutineService {
                 "An upper lower split focused on building strength and muscle by dividing workouts between upper-body and lower-body days.",
                 "Hard",
                 "/images/upper_lower_routine.jpg",
-                List.of(
-                        exerciseService.getExerciseById(3),
-                        exerciseService.getExerciseById(17),
-                        exerciseService.getExerciseById(14),
-                        exerciseService.getExerciseById(15)
-                ),
+                getExercisesByIds(1, 2, 13, 11),
                 trainerService.getTrainerById(3)
         ));
     }
@@ -98,6 +85,19 @@ public class RoutineService {
         return null;
     }
 
+    private List<Exercise> getExercisesByIds(Integer... ids) {
+        List<Exercise> exercises = new ArrayList<>();
+
+        for (Integer id : ids) {
+            Exercise exercise = exerciseService.getExerciseById(id);
+
+            if (exercise != null) {
+                exercises.add(exercise);
+            }
+        }
+
+        return exercises;
+    }
     public Routine deleteRoutine(Integer id) {
         return routines.remove(id);
     }
