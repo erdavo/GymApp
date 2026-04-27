@@ -1,10 +1,12 @@
 package com.gymapp.gymapp.Service;
 
+
 import org.springframework.stereotype.Service;
 
 import com.gymapp.gymapp.Entities.Routine;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,15 +15,27 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RoutineService {
     private final Map<Integer, Routine> routines;
     private int nextId = 1;
+    private final ExerciseService exerciseService ;
+    private final TrainerService trainerService ;
 
-    public RoutineService() {
-        routines = new ConcurrentHashMap<>();
+    public RoutineService(ExerciseService exerciseService, TrainerService trainerService) {
+        this.exerciseService = exerciseService;
+        this.trainerService = trainerService;
+        this.routines = new ConcurrentHashMap<>();
+
         createRoutine(new Routine(
                 null,
                 "PPL",
                 "A Push Pull Legs routine designed to build muscle and improve overall strength with a balanced weekly split.",
                 "Medium",
-                "/images/ppl_routine.jpg"
+                "/images/ppl_routine.jpg",
+                List.of(
+                        exerciseService.getExerciseById(3),
+                        exerciseService.getExerciseById(5),
+                        exerciseService.getExerciseById(2),
+                        exerciseService.getExerciseById(8)
+                ),
+                trainerService.getTrainerById(1)
         ));
 
         createRoutine(new Routine(
@@ -29,7 +43,14 @@ public class RoutineService {
                 "Full Body",
                 "A full body routine ideal for beginners who want to train all major muscle groups in a simple and effective way.",
                 "Easy",
-                "/images/full_body_routine.jpg"
+                "/images/full_body_routine.jpg",
+                List.of(
+                        exerciseService.getExerciseById(1),
+                        exerciseService.getExerciseById(2),
+                        exerciseService.getExerciseById(13),
+                        exerciseService.getExerciseById(11)
+                ),
+                trainerService.getTrainerById(2)
         ));
 
         createRoutine(new Routine(
@@ -37,7 +58,14 @@ public class RoutineService {
                 "Upper-Lower",
                 "An upper lower split focused on building strength and muscle by dividing workouts between upper-body and lower-body days.",
                 "Hard",
-                "/images/upper_lower_routine.jpg"
+                "/images/upper_lower_routine.jpg",
+                List.of(
+                        exerciseService.getExerciseById(3),
+                        exerciseService.getExerciseById(17),
+                        exerciseService.getExerciseById(14),
+                        exerciseService.getExerciseById(15)
+                ),
+                trainerService.getTrainerById(3)
         ));
     }
 
@@ -53,6 +81,11 @@ public class RoutineService {
         routine.setId(nextId);
         routines.put(nextId, routine);
         nextId++;
+
+        if (routine.getTrainer() != null) {
+            routine.getTrainer().getRoutines().add(routine);
+        }
+
         return routine;
     }
 

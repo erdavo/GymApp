@@ -1,5 +1,6 @@
 package com.gymapp.gymapp.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Routine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
     private String description;
@@ -17,6 +18,7 @@ public class Routine {
     private String imageUrl;
 
     // Relationship 1:N - Many routines belong to one trainer
+
     @ManyToOne
     private Trainer trainer;
 
@@ -30,8 +32,9 @@ public class Routine {
         this.imageUrl = "/images/default-routine.png";
     }
 
-    public Routine(String name, String description, String difficulty, String imageUrl,
+    public Routine(Integer id, String name, String description, String difficulty, String imageUrl,
             List<Exercise> exercises, Trainer trainer) {
+        this.id =  id ;
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
@@ -43,11 +46,11 @@ public class Routine {
     }
 
     // Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

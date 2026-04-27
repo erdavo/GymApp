@@ -1,5 +1,6 @@
 package com.gymapp.gymapp.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -8,7 +9,8 @@ import java.util.ArrayList;
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+
     private String name;
     private String email;
     private String description;
@@ -20,6 +22,7 @@ public class Trainer {
      * relationship,
      * and the "many" side is defined in the Routine entity with @ManyToOne.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "trainer")
     private List<Routine> routines = new ArrayList<>();
 
@@ -28,26 +31,27 @@ public class Trainer {
     }
 
     // Constructor without ID for persistence (Database handles the ID)
-    public Trainer(String name, String email, String description, String imageUrl) {
+    public Trainer(Integer id, String name, String email, String description, String imageUrl) {
+        this.id = id ;
         this.name = name;
         this.email = email;
         this.description = description;
         this.imageUrl = (imageUrl == null || imageUrl.isBlank())
                 ? "/images/default-trainer.png"
                 : imageUrl;
-        this.routines = new ArrayList<>();
+        this.routines = routines;
     }
 
     // Constructor without ID for persistence (Database handles the ID)
-    public Trainer(String name, String email, String description) {
-        this(name, email, description, "/images/default-trainer.png");
+    public Trainer(Integer id, String name, String email, String description) {
+        this(id, name, email, description, "/images/default-trainer.png");
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

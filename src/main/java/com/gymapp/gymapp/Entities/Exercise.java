@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
     private String description;
@@ -34,7 +34,8 @@ public class Exercise {
     }
 
     // Constructor without ID for persistence (Database handles the ID)
-    public Exercise(String name, String description, String muscleGroup, String difficulty, String imageUrl) {
+    public Exercise(Integer id, String name, String description, String muscleGroup, String difficulty, String imageUrl) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.muscleGroup = muscleGroup;
@@ -44,15 +45,15 @@ public class Exercise {
                 : imageUrl;
     }
 
-    public Exercise(String name, String description, String muscleGroup, String difficulty) {
-        this(name, description, muscleGroup, difficulty, "/images/default-exercise.png");
+    public Exercise(Integer id, String name, String description, String muscleGroup, String difficulty) {
+        this(id, name, description, muscleGroup, difficulty, "/images/default-exercise.png");
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

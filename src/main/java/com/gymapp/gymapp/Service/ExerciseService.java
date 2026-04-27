@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ExerciseService {
 
     private final Map<Integer, Exercise> exercises;
-    private int nextId = 1;
+    private Integer nextId = 1;
 
     public ExerciseService() {
         exercises = new ConcurrentHashMap<>();
