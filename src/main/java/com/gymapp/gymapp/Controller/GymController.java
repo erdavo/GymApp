@@ -86,6 +86,8 @@ public class GymController {
         Routine routine = routineService.getRoutineById(id);
         if (routine != null) {
             model.addAttribute("routine", routine);
+            model.addAttribute("exercises", exerciseService.getAllExercises());
+            model.addAttribute("trainers", trainerService.getAllTrainers());
             return "editRoutine";
         }
         return "redirect:/";

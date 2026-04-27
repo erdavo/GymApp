@@ -52,6 +52,49 @@
                         <label for="description">Description</label>
                         <textarea id="description" name="description" rows="5">{{routine.description}}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label>Select exercises</label>
+
+                        <div class="search-bar routine-search-bar">
+                            <input type="text" id="routineExerciseSearch" placeholder="Search exercise...">
+                        </div>
+
+                        <div class="filters routine-filters">
+                            <button type="button" data-filter="all" class="active">All</button>
+                            <button type="button" data-filter="Chest">Chest</button>
+                            <button type="button" data-filter="Back">Back</button>
+                            <button type="button" data-filter="Legs">Legs</button>
+                            <button type="button" data-filter="Arms">Arms</button>
+                            <button type="button" data-filter="Cardio">Cardio</button>
+                            <button type="button" data-filter="Abs">Abs</button>
+                        </div>
+
+                        <div class="routine-exercise-grid">
+                            {{#exercises}}
+                            <label class="routine-exercise-card"
+                                   data-name="{{name}}"
+                                   data-muscle="{{muscleGroup}}">
+                                <input type="checkbox" name="exerciseIds" value="{{id}}">
+                                <img src="{{imageUrl}}" alt="{{name}}">
+                                <div>
+                                    <h4>{{name}}</h4>
+                                    <p>{{muscleGroup}} Â· {{difficulty}}</p>
+                                </div>
+                            </label>
+                            {{/exercises}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trainerId">Select trainer</label>
+                        <select id="trainerId" name="trainerId" required>
+                            <option value="" disabled selected>Select trainer...</option>
+                            {{#trainers}}
+                            <option value="{{id}}">{{name}} - {{email}}</option>
+                            {{/trainers}}
+                        </select>
+                    </div>
+
                     <div class="form-actions">
                         <button type="submit" class="update-button">UPDATE ROUTINE</button>
                         <a href="/#featured-routines" class="cancel-link">Cancel and back</a>
@@ -60,5 +103,6 @@
             </div>
         </div>
     </section>
+    <script src="/js/search.js"></script>
 </body>
 </html>
