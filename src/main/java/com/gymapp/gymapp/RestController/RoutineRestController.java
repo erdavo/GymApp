@@ -9,10 +9,10 @@ import java.util.Collection;
 import java.util.Map;
 
 @RestController
-public class RoutineController {
+public class RoutineRestController {
     private final RoutineService routineService;
 
-    public RoutineController(RoutineService routineService) {
+    public RoutineRestController(RoutineService routineService) {
         this.routineService = routineService;
     }
 

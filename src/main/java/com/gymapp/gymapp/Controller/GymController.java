@@ -21,7 +21,8 @@ public class GymController {
     private final RoutineService routineService;
     private final TrainerService trainerService;
 
-    public GymController(ExerciseService exerciseService, RoutineService routineService, TrainerService trainerService) {
+    public GymController(ExerciseService exerciseService, RoutineService routineService,
+            TrainerService trainerService) {
         this.exerciseService = exerciseService;
         this.routineService = routineService;
         this.trainerService = trainerService;
@@ -48,7 +49,6 @@ public class GymController {
         return "addRoutine";
     }
 
-
     @GetMapping("/addTrainer")
     public String addTrainerPage() {
         return "addTrainer";
@@ -59,6 +59,7 @@ public class GymController {
         exerciseService.createExercise(exercise);
         return "redirect:/#popular-exercises";
     }
+
     @PostMapping("/routines/new")
     public String createRoutine(
             @RequestParam String name,
@@ -86,7 +87,6 @@ public class GymController {
 
         return "redirect:/#featured-routines";
     }
-
 
     @PostMapping("/trainers/new")
     public String createTrainer(@ModelAttribute Trainer trainer) {
@@ -119,8 +119,7 @@ public class GymController {
                             "imageUrl", exercise.getImageUrl(),
                             "selected", routine.getExercises()
                                     .stream()
-                                    .anyMatch(selectedExercise -> selectedExercise.getId().equals(exercise.getId()))
-                    ))
+                                    .anyMatch(selectedExercise -> selectedExercise.getId().equals(exercise.getId()))))
                     .toList();
 
             List<Map<String, Object>> trainersWithSelected = trainerService.getAllTrainers()
@@ -130,8 +129,7 @@ public class GymController {
                             "name", trainer.getName(),
                             "email", trainer.getEmail(),
                             "selected", routine.getTrainer() != null &&
-                                    routine.getTrainer().getId().equals(trainer.getId())
-                    ))
+                                    routine.getTrainer().getId().equals(trainer.getId())))
                     .toList();
 
             model.addAttribute("routine", routine);
@@ -168,7 +166,7 @@ public class GymController {
         return "redirect:/#popular-exercises";
     }
 
-    @PostMapping("/routines/update")
+    @PatchMapping("/routines/update")
     public String patchRoutine(
             @RequestParam Long id,
             @RequestParam String name,

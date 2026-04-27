@@ -9,10 +9,10 @@ import java.util.Collection;
 import java.util.Map;
 
 @RestController
-public class ExerciseController {
+public class ExerciseRestController {
     private final ExerciseService exerciseService;
 
-    public ExerciseController(ExerciseService exerciseService) {
+    public ExerciseRestController(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
     }
 
