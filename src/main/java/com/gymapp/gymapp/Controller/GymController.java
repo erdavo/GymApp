@@ -43,6 +43,7 @@ public class GymController {
     @GetMapping("/addRoutine")
     public String addRoutinePage(Model model) {
         model.addAttribute("exercises", exerciseService.getAllExercises());
+        model.addAttribute("trainers", trainerService.getAllTrainers());
         return "addRoutine";
     }
 

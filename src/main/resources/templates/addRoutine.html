@@ -85,6 +85,16 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="trainerId">Select trainer</label>
+                    <select id="trainerId" name="trainerId" required>
+                        <option value="" disabled selected>Select trainer...</option>
+                        {{#trainers}}
+                        <option value="{{id}}">{{name}} - {{email}}</option>
+                        {{/trainers}}
+                    </select>
+                </div>
+
 
                 <div class="form-actions">
                     <button type="submit" class="update-button">SAVE ROUTINE</button>
