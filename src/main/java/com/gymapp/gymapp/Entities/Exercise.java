@@ -1,5 +1,6 @@
 package com.gymapp.gymapp.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Exercise {
      * relationship,
      * and the "one" side is defined in the Routine entity with @ManyToMany.
      */
+    @JsonIgnore
     @ManyToMany(mappedBy = "exercises")
     private List<Routine> routines = new ArrayList<>();
 

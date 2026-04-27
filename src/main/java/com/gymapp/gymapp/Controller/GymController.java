@@ -62,29 +62,10 @@ public class GymController {
 
     @PostMapping("/routines/new")
     public String createRoutine(
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam String difficulty,
+            @ModelAttribute Routine routine,
             @RequestParam(required = false) List<Long> exerciseIds,
             @RequestParam Long trainerId) {
-        Routine routine = new Routine();
-
-        routine.setName(name);
-        routine.setDescription(description);
-        routine.setDifficulty(difficulty);
-
-        List<Exercise> selectedExercises = exerciseService.getAllExercises()
-                .stream()
-                .filter(exercise -> exerciseIds != null && exerciseIds.contains(exercise.getId()))
-                .toList();
-
-        routine.setExercises(selectedExercises);
-
-        Trainer selectedTrainer = trainerService.getTrainerById(trainerId);
-        routine.setTrainer(selectedTrainer);
-
-        routineService.createRoutine(routine);
-
+        routineService.saveRoutineWithIds(routine, exerciseIds, trainerId);
         return "redirect:/#featured-routines";
     }
 
@@ -167,34 +148,13 @@ public class GymController {
     }
 
     @PatchMapping("/routines/update")
-    public String patchRoutine(
-            @RequestParam Long id,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam String difficulty,
-            @RequestParam(required = false) List<Long> exerciseIds,
-            @RequestParam Long trainerId) {
+    public String patchRoutine(@RequestParam Long id, @RequestParam Map<String, Object> updates, @RequestParam(required = false) List<Long> exerciseIds) {
 
-        Routine routine = routineService.getRoutineById(id);
-
-        if (routine != null) {
-            routine.setName(name);
-            routine.setDescription(description);
-            routine.setDifficulty(difficulty);
-
-            // IMPORTANTE: lista mutable (no usar toList())
-            List<Exercise> selectedExercises = exerciseService.getAllExercises()
-                    .stream()
-                    .filter(exercise -> exerciseIds != null && exerciseIds.contains(exercise.getId()))
-                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
-
-            routine.setExercises(selectedExercises);
-
-            Trainer selectedTrainer = trainerService.getTrainerById(trainerId);
-            routine.setTrainer(selectedTrainer);
-
-            routineService.updateRoutine(id, routine);
+        if (exerciseIds != null) {
+            updates.put("exerciseIds", exerciseIds);
         }
+
+        routineService.patchRoutine(id, updates);
 
         return "redirect:/#featured-routines";
     }
