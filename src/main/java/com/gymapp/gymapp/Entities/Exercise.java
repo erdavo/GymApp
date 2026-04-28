@@ -98,4 +98,9 @@ public class Exercise {
                 ? "/images/default-exercise.png"
                 : imageUrl;
     }
+
+    // Checks if the exercise is associated with at least one routine
+    public boolean isHasRoutines() {
+        return this.routines != null && !this.routines.isEmpty();
+    }
 }
