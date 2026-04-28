@@ -12,6 +12,7 @@
    10. BMR Calculator
    11. Back to Top
    12. DELETE MODAL
+   13. EXERCISES MODAL
 
 */
 
@@ -729,4 +730,57 @@ a {
 
 .btn-danger:hover {
     background: #b32a2a;
+}
+
+/* 13. EXERCISES MODAL */
+
+#exercisesModal .modal-container {
+    max-width: 600px;
+    width: 95%;
+    padding: 40px;
+}
+
+.exercises-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    text-align: left;
+    margin: 25px 0;
+    padding: 5px;
+    background: transparent;
+}
+
+#routineExercisesList {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#routineExercisesList li {
+    background: #222;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #ff3b3b;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+#routineExercisesList li:hover {
+    background: #2a2a2a;
+}
+
+.exercises-list-container::-webkit-scrollbar {
+    width: 6px;
+}
+.exercises-list-container::-webkit-scrollbar-thumb {
+    background: #ff3b3b;
+    border-radius: 10px;
+}
+
+.hidden-exercises-list {
+    display: none;
 }

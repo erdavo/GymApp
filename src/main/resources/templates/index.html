@@ -133,24 +133,28 @@
                     <button type="button" class="see-more-btn" onclick="toggleDescription(this)">See more</button>
 
                     <div class="card-actions">
+                        <a href="javascript:void(0)" class="card-button btn-secondary" onclick="showExercisesModal('{{id}}')">
+                            <i class="fas fa-eye"></i> View Exercises
+                        </a>
+
                         <a href="/editRoutine/{{id}}" class="card-button btn-edit">
                             <i class="fas fa-edit"></i> Edit
                         </a>
                         <a href="javascript:void(0)" class="card-button btn-delete"
-                            onclick="showDeleteModal('/routines/delete/{{id}}')">
+                           onclick="showDeleteModal('/routines/delete/{{id}}')">
                             <i class="fas fa-trash"></i> Delete
                         </a>
                     </div>
+
+                    <ul id="hidden-exercises-{{id}}" class="hidden-exercises-list">
+                        {{#exercises}}
+                        <li>{{name}}</li>
+                        {{/exercises}}
+                    </ul>
+
                 </div>
             </div>
             {{/routines}}
-        </div>
-
-        <div class="routine-button">
-            <a href="/addRoutine" class="add-button">
-                <i class="fas fa-plus"></i>
-                Add Routine
-            </a>
         </div>
     </section>
 
@@ -248,12 +252,31 @@
         </div>
     </div>
 
+    <div id="exercisesModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-icon">
+                <i class="fas fa-list"></i>
+            </div>
+            <h3>Ejercicios de la Rutina</h3>
+
+            <div class="exercises-list-container">
+                <ul id="routineExercisesList">
+                </ul>
+            </div>
+
+            <div class="modal-buttons">
+                <button id="closeExercisesModal" class="modal-btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="/js/calculator.js"></script>
     <script src="/js/search.js"></script>
     <script src="/js/buttonBackToTop.js"></script>
     <script src="/js/deleteModal.js"></script>
     <script src="/js/navActive.js"></script>
     <script src="/js/descriptionToggle.js"></script>
+    <script src="/js/exercisesModal.js"></script>
 
 </body>
 
