@@ -2,9 +2,11 @@ package com.gymapp.gymapp.Service;
 
 import com.gymapp.gymapp.Repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.gymapp.gymapp.Entities.Exercise;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
 import java.util.Map;
@@ -40,9 +42,21 @@ public class ExerciseService {
         return null;
     }
 
-    // Remove a exercise from the database
+    // Remove exercise from the database
     public void deleteExercise(Long id) {
-        exerciseRepository.deleteById(id);
+        Exercise exercise = exerciseRepository.findById(id).orElse(null);
+
+        if (exercise != null) {
+            if (!exercise.isHasRoutines()) {
+                exerciseRepository.delete(exercise);
+            }
+            else { // Exception to API REST
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Cannot delete exercise: it is currently assigned to one or more routines.");
+            }
+        }
+        else { // Exception to API REST
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Exercise not found");
+        }
     }
 
     // Apply partial updates to a exercise (PATCH equivalent)
