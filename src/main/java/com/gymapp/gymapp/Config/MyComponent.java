@@ -14,10 +14,23 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+/**
+ * component that populates the database with sample data
+ * only runs in local profile, and only if the database is empty
+ * has 3 phases:
+ * 1. Create and Save Trainers
+ * 2. Create and Save Exercises
+ * 3. Create and Save Routines, asociated with a trainer
+ * 
+ * this is a component for testing purposes only, it will not be used in
+ * production
+ */
 @Component
 @Profile("local")
 public class MyComponent {
 
+        // injecting repositories, using @Autowired, the classic way, this could also be
+        // done using constructor injection
         @Autowired
         private RoutineRepository routineRepository;
         @Autowired
@@ -25,6 +38,8 @@ public class MyComponent {
         @Autowired
         private ExerciseRepository exerciseRepository;
 
+        // PostConstruct method that populates the database with sample data
+        // only runs in local profile, and only if the database is empty
         @PostConstruct
         public void populateDB() {
                 if (trainerRepository.count() == 0 && exerciseRepository.count() == 0
@@ -45,7 +60,7 @@ public class MyComponent {
                         trainerRepository.save(t2);
                         trainerRepository.save(t3);
 
-                        // 2. Crear y guardar Ejercicios
+                        // 2. Create and Save Exercises
                         Exercise ex1 = new Exercise("Push Up",
                                         "A bodyweight chest exercise that also works the shoulders and triceps. Keep your body straight and lower yourself under control before pushing back up.",
                                         "Chest", "Medium", "/images/push_up_exercise.jpg");
@@ -120,7 +135,7 @@ public class MyComponent {
                         exerciseRepository.save(ex17);
                         exerciseRepository.save(ex18);
 
-                        // 3. Crear Rutinas, asignarles ejercicios y entrenadores
+                        // 3. Create Routines, assigning exercises and trainers
                         Routine r1 = new Routine("PPL",
                                         "A Push Pull Legs routine designed to build muscle and improve overall strength with a balanced weekly split.",
                                         "Medium", "/images/ppl_routine.jpg", new ArrayList<>(), t1);
