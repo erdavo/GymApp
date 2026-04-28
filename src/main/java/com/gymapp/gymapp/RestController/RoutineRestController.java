@@ -2,6 +2,7 @@ package com.gymapp.gymapp.RestController;
 
 import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Service.RoutineService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,17 +36,53 @@ public class RoutineRestController {
     }
 
     @PostMapping("/api/routines")
-    public ResponseEntity<Routine> createRoutine(@RequestBody Routine routine) {
-        Routine created = routineService.createRoutine(routine);
-        return new ResponseEntity<>(created, org.springframework.http.HttpStatus.CREATED);
+    public ResponseEntity<Routine> createRoutine(@RequestBody Map<String, Object> routineData) {
+        // Extract data from the received Map
+        String name = (String) routineData.get("name");  // Routine name
+        String description = (String) routineData.get("description");  // Routine description
+        String difficulty = (String) routineData.get("difficulty");  // Routine difficulty (e.g., "Easy", "Medium", "Hard")
+        String imageUrl = (String) routineData.get("imageUrl");  // Image URL for the routine
+        Long trainerId = Long.valueOf(routineData.get("trainerId").toString());  // Trainer ID to associate with the routine
+        List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds");  // List of exercise IDs to associate with the routine
+
+        // Create a new routine object with the extracted data
+        Routine routine = new Routine();
+        routine.setName(name);  // Set the routine's name
+        routine.setDescription(description);  // Set the routine's description
+        routine.setDifficulty(difficulty);  // Set the routine's difficulty
+        routine.setImageUrl(imageUrl);  // Set the routine's image URL
+
+        // Call the service method to save the routine, associating the exercises and trainer by their IDs
+        routineService.saveRoutineWithIds(routine, exerciseIds, trainerId);
+
+        // Return the created routine with a 201 (Created) status
+        return ResponseEntity.status(HttpStatus.CREATED).body(routine);
     }
 
     @PutMapping("/api/routines/{id}")
-    public ResponseEntity<Routine> updateRoutine(@PathVariable Long id, @RequestBody Routine updatedRoutine) {
-        Routine routine = routineService.updateRoutine(id, updatedRoutine);
+    public ResponseEntity<Routine> updateRoutine(@PathVariable Long id, @RequestBody Map<String, Object> routineData) {
+        // Extraer datos del JSON recibido
+        String name = (String) routineData.get("name");
+        String description = (String) routineData.get("description");
+        String difficulty = (String) routineData.get("difficulty");
+        String imageUrl = (String) routineData.get("imageUrl");
+        Long trainerId = Long.valueOf(routineData.get("trainerId").toString()); // ID del entrenador
+        List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds"); // IDs de los ejercicios
 
-        if (routine != null) {
-            return ResponseEntity.ok(routine);
+        // Buscar la rutina existente
+        Routine existingRoutine = routineService.getRoutineById(id);
+
+        if (existingRoutine != null) {
+            // Actualizar los valores de la rutina
+            existingRoutine.setName(name);
+            existingRoutine.setDescription(description);
+            existingRoutine.setDifficulty(difficulty);
+            existingRoutine.setImageUrl(imageUrl);
+
+            // Llamar al servicio para actualizar la rutina con los ejercicios y el entrenador asociados
+            routineService.saveRoutineWithIds(existingRoutine, exerciseIds, trainerId);
+
+            return ResponseEntity.ok(existingRoutine);
         } else {
             return ResponseEntity.notFound().build();
         }

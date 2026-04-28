@@ -4,6 +4,7 @@ import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Repository.ExerciseRepository;
 import com.gymapp.gymapp.Repository.RoutineRepository;
 import com.gymapp.gymapp.Repository.TrainerRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,12 @@ public class RoutineService {
 
     // Remove a routine from the database
     public void deleteRoutine(Long id) {
-        routineRepository.deleteById(id);
+        Routine routine = routineRepository.findById(id).orElse(null);
+        if (routine != null) {
+            // Inicializar las colecciones antes de eliminar
+            Hibernate.initialize(routine.getExercises());
+            routineRepository.deleteById(id);
+        }
     }
 
     // Apply partial updates to a routine (PATCH equivalent)
