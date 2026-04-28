@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.Map;
 
+// REST controller for managing exercises
+// Exposes CRUD endpoints for exercises, and is rest because it use HTTP methods (GET, POST, PUT, DELETE, PATCH) and REST 
 @RestController
 public class ExerciseRestController {
     private final ExerciseService exerciseService;

@@ -38,21 +38,25 @@ public class RoutineRestController {
     @PostMapping("/api/routines")
     public ResponseEntity<Routine> createRoutine(@RequestBody Map<String, Object> routineData) {
         // Extract data from the received Map
-        String name = (String) routineData.get("name");  // Routine name
-        String description = (String) routineData.get("description");  // Routine description
-        String difficulty = (String) routineData.get("difficulty");  // Routine difficulty (e.g., "Easy", "Medium", "Hard")
-        String imageUrl = (String) routineData.get("imageUrl");  // Image URL for the routine
-        Long trainerId = Long.valueOf(routineData.get("trainerId").toString());  // Trainer ID to associate with the routine
-        List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds");  // List of exercise IDs to associate with the routine
+        String name = (String) routineData.get("name"); // Routine name
+        String description = (String) routineData.get("description"); // Routine description
+        String difficulty = (String) routineData.get("difficulty"); // Routine difficulty (e.g., "Easy", "Medium",
+                                                                    // "Hard")
+        String imageUrl = (String) routineData.get("imageUrl"); // Image URL for the routine
+        Long trainerId = Long.valueOf(routineData.get("trainerId").toString()); // Trainer ID to associate with the
+                                                                                // routine
+        List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds"); // List of exercise IDs to associate with
+                                                                              // the routine
 
         // Create a new routine object with the extracted data
         Routine routine = new Routine();
-        routine.setName(name);  // Set the routine's name
-        routine.setDescription(description);  // Set the routine's description
-        routine.setDifficulty(difficulty);  // Set the routine's difficulty
-        routine.setImageUrl(imageUrl);  // Set the routine's image URL
+        routine.setName(name); // Set the routine's name
+        routine.setDescription(description); // Set the routine's description
+        routine.setDifficulty(difficulty); // Set the routine's difficulty
+        routine.setImageUrl(imageUrl); // Set the routine's image URL
 
-        // Call the service method to save the routine, associating the exercises and trainer by their IDs
+        // Call the service method to save the routine, associating the exercises and
+        // trainer by their IDs
         routineService.saveRoutineWithIds(routine, exerciseIds, trainerId);
 
         // Return the created routine with a 201 (Created) status
@@ -66,6 +70,8 @@ public class RoutineRestController {
         String difficulty = (String) routineData.get("difficulty");
         String imageUrl = (String) routineData.get("imageUrl");
         Long trainerId = Long.valueOf(routineData.get("trainerId").toString());
+        // it uses Object type to be compatible with Jackson, which automatically
+        // converts JSON arrays to List
         List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds");
 
         // Buscar la rutina existente
