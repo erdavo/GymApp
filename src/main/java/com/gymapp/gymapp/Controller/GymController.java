@@ -17,10 +17,12 @@ import java.util.Map;
 @Controller
 public class GymController {
 
+    // Services for the controller
     private final ExerciseService exerciseService;
     private final RoutineService routineService;
     private final TrainerService trainerService;
 
+    // Constructor for the controller
     public GymController(ExerciseService exerciseService, RoutineService routineService,
             TrainerService trainerService) {
         this.exerciseService = exerciseService;
@@ -28,6 +30,10 @@ public class GymController {
         this.trainerService = trainerService;
     }
 
+    // Get method to get the index page
+    // it uses the exerciseService, routineService and trainerService to get the
+    // exercises, routines and trainers
+    // to display them on the index page
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("exercises", exerciseService.getAllExercises());
@@ -37,11 +43,18 @@ public class GymController {
         return "index";
     }
 
+    // Get method to get the add exercise page
+    // it uses the exerciseService to get the exercises to display them on the add
+    // exercise page
     @GetMapping("/addExercise")
     public String addExercise() {
         return "addExercise";
     }
 
+    // Get method to get the add routine page
+    // it uses the exerciseService and trainerService to get the exercises and
+    // trainers
+    // to display them on the add routine page
     @GetMapping("/addRoutine")
     public String addRoutinePage(Model model) {
         model.addAttribute("exercises", exerciseService.getAllExercises());
@@ -49,17 +62,27 @@ public class GymController {
         return "addRoutine";
     }
 
+    // Get method to get the add trainer page
+    // it uses the trainerService to get the trainers to display them on the add
+    // trainer page
     @GetMapping("/addTrainer")
     public String addTrainerPage() {
         return "addTrainer";
     }
 
+    // Post method to create a new exercise
+    // it uses the exerciseService to create the exercise
     @PostMapping("/exercises/new")
     public String createExercise(@ModelAttribute Exercise exercise) {
         exerciseService.createExercise(exercise);
         return "redirect:/#popular-exercises";
     }
 
+    // Post method to create a new routine
+    // it uses the routineService to create the routine
+    // it also uses the exerciseService and trainerService to get the exercises and
+    // trainers
+    // to display them on the add routine page
     @PostMapping("/routines/new")
     public String createRoutine(
             @ModelAttribute Routine routine,
@@ -69,12 +92,16 @@ public class GymController {
         return "redirect:/#featured-routines";
     }
 
+    // Post method to create a new trainer
+    // it uses the trainerService to create the trainer
     @PostMapping("/trainers/new")
     public String createTrainer(@ModelAttribute Trainer trainer) {
         trainerService.createTrainer(trainer);
         return "redirect:/#personal-trainers";
     }
 
+    // Get method to get the edit exercise page
+    // it uses the exerciseService to get the exercise by ID
     @GetMapping("/editExercise/{id}")
     public String editExercisePage(@PathVariable Long id, Model model) {
         Exercise exercise = exerciseService.getExerciseById(id);
@@ -85,10 +112,15 @@ public class GymController {
         return "redirect:/";
     }
 
+    // get the page where you can edit a routine
+    // it uses the exerciseService and trainerService to get the exercises and
+    // trainers
+    // for the dropdowns
     @GetMapping("/editRoutine/{id}")
     public String editRoutinePage(@PathVariable Long id, Model model) {
         Routine routine = routineService.getRoutineById(id);
 
+        // Check if the routine exists
         if (routine != null) {
             List<Map<String, Object>> exercisesWithSelected = exerciseService.getAllExercises()
                     .stream()
@@ -119,10 +151,12 @@ public class GymController {
 
             return "editRoutine";
         }
-
+        // If the routine does not exist, redirect to the home page
         return "redirect:/";
     }
 
+    // get the page where you can edit a trainer
+    // it uses the trainerService to get the trainer by ID
     @GetMapping("/editTrainer/{id}")
     public String editTrainerPage(@PathVariable Long id, Model model) {
         Trainer trainer = trainerService.getTrainerById(id);
@@ -130,9 +164,12 @@ public class GymController {
             model.addAttribute("trainer", trainer);
             return "editTrainer";
         }
+        // If the trainer does not exist, redirect to the home page
         return "redirect:/";
     }
 
+    // Patch method to update an exercise
+    // it uses the exerciseService to update the exercise by ID
     @PatchMapping("/exercises/update")
     public String patchExercise(@RequestParam Long id, @RequestParam Map<String, Object> updates) {
 
@@ -147,8 +184,11 @@ public class GymController {
         return "redirect:/#popular-exercises";
     }
 
+    // Patch method to update a routine
+    // it uses the routineService to update the routine by ID
     @PatchMapping("/routines/update")
-    public String patchRoutine(@RequestParam Long id, @RequestParam Map<String, Object> updates, @RequestParam(required = false) List<Long> exerciseIds) {
+    public String patchRoutine(@RequestParam Long id, @RequestParam Map<String, Object> updates,
+            @RequestParam(required = false) List<Long> exerciseIds) {
 
         if (exerciseIds != null) {
             updates.put("exerciseIds", exerciseIds);
@@ -159,6 +199,8 @@ public class GymController {
         return "redirect:/#featured-routines";
     }
 
+    // Patch method to update a trainer
+    // it uses the trainerService to update the trainer by ID
     @PatchMapping("/trainers/update")
     public String patchTrainer(@RequestParam Long id, @RequestParam Map<String, Object> updates) {
 
@@ -173,18 +215,24 @@ public class GymController {
         return "redirect:/#personal-trainers";
     }
 
+    // Delete method to delete an exercise
+    // it uses the exerciseService to delete the exercise by ID
     @GetMapping("/exercises/delete/{id}")
     public String deleteExercise(@PathVariable Long id) {
         exerciseService.deleteExercise(id);
         return "redirect:/#popular-exercises";
     }
 
+    // Delete method to delete a routine
+    // it uses the routineService to delete the routine by ID
     @GetMapping("/routines/delete/{id}")
     public String deleteRoutine(@PathVariable Long id) {
         routineService.deleteRoutine(id);
         return "redirect:/#featured-routines";
     }
 
+    // Delete method to delete a trainer
+    // it uses the trainerService to delete the trainer by ID
     @GetMapping("/trainers/delete/{id}")
     public String deleteTrainer(@PathVariable Long id) {
         trainerService.deleteTrainer(id);
