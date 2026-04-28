@@ -61,25 +61,23 @@ public class RoutineRestController {
 
     @PutMapping("/api/routines/{id}")
     public ResponseEntity<Routine> updateRoutine(@PathVariable Long id, @RequestBody Map<String, Object> routineData) {
-        // Extraer datos del JSON recibido
         String name = (String) routineData.get("name");
         String description = (String) routineData.get("description");
         String difficulty = (String) routineData.get("difficulty");
         String imageUrl = (String) routineData.get("imageUrl");
-        Long trainerId = Long.valueOf(routineData.get("trainerId").toString()); // ID del entrenador
-        List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds"); // IDs de los ejercicios
+        Long trainerId = Long.valueOf(routineData.get("trainerId").toString());
+        List<Long> exerciseIds = (List<Long>) routineData.get("exerciseIds");
 
         // Buscar la rutina existente
         Routine existingRoutine = routineService.getRoutineById(id);
 
         if (existingRoutine != null) {
-            // Actualizar los valores de la rutina
+
             existingRoutine.setName(name);
             existingRoutine.setDescription(description);
             existingRoutine.setDifficulty(difficulty);
             existingRoutine.setImageUrl(imageUrl);
 
-            // Llamar al servicio para actualizar la rutina con los ejercicios y el entrenador asociados
             routineService.saveRoutineWithIds(existingRoutine, exerciseIds, trainerId);
 
             return ResponseEntity.ok(existingRoutine);

@@ -121,7 +121,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"Incline Bench Press\",\n    \"description\": \"Chest exercise\",\n    \"muscleGroup\": \"Chest\",\n    \"difficulty\": \"Medium\"\n}",
+              "raw": "{\n    \"name\": \"New Exercise\",\n    \"description\": \"Chest exercise\",\n    \"muscleGroup\": \"Chest\",\n    \"difficulty\": \"Medium\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -150,7 +150,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/exercises/1",
+              "raw": "http://localhost:8080/api/exercises/19",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -159,7 +159,7 @@
               "path": [
                 "api",
                 "exercises",
-                "1"
+                "19"
               ]
             }
           },
@@ -172,7 +172,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"New Bench Press\",\r\n  \"difficulty\": \"EXTREME\"\r\n}",
+              "raw": "{\r\n  \"name\": \"Push up\",\r\n  \"difficulty\": \"Medium\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -180,7 +180,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/exercises/3",
+              "raw": "http://localhost:8080/api/exercises/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -189,7 +189,7 @@
               "path": [
                 "api",
                 "exercises",
-                "3"
+                "1"
               ]
             }
           },
@@ -242,7 +242,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/routines/1",
+              "raw": "http://localhost:8080/api/routines/2",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -251,7 +251,7 @@
               "path": [
                 "api",
                 "routines",
-                "1"
+                "2"
               ]
             }
           },
@@ -264,7 +264,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"PPL Updated\",\r\n    \"description\": \"Updated routine for hypertrophy\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/default-routine.png\"\r\n}",
+              "raw": "{\r\n    \"name\": \"PPL Updated\",\r\n    \"description\": \"Updated Push Pull Legs routine focused on hypertrophy and strength progression.\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/ppl_updated_routine.jpg\",\r\n    \"trainerId\": 1,  \r\n    \"exerciseIds\": [3, 17, 15]  \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -294,7 +294,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Strength Routine\",\r\n    \"description\": \"Routine for strength gain\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/default-routine.png\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Strength Routine\",\r\n    \"description\": \"Routine for strength gain\",\r\n    \"difficulty\": \"Hard\",\r\n    \"imageUrl\": \"/images/default-routine.png\",\r\n    \"trainerId\": 2,\r\n    \"exerciseIds\": [3, 17, 15, 10]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -322,7 +322,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/routines/1",
+              "raw": "http://localhost:8080/api/routines/4",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -331,7 +331,7 @@
               "path": [
                 "api",
                 "routines",
-                "1"
+                "4"
               ]
             }
           },
@@ -344,7 +344,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"difficulty\": \"EXTREME\"\r\n    \r\n}",
+              "raw": "{\r\n  \"difficulty\": \"EXTREME\",\r\n  \"trainerId\": 1,\r\n  \"exerciseIds\": [3, 17, 15]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"

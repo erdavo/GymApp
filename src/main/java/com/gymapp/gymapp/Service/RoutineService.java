@@ -1,5 +1,6 @@
 package com.gymapp.gymapp.Service;
 
+import com.gymapp.gymapp.Entities.Exercise;
 import com.gymapp.gymapp.Entities.Routine;
 import com.gymapp.gymapp.Repository.ExerciseRepository;
 import com.gymapp.gymapp.Repository.RoutineRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RoutineService {
@@ -59,7 +61,6 @@ public class RoutineService {
     public void deleteRoutine(Long id) {
         Routine routine = routineRepository.findById(id).orElse(null);
         if (routine != null) {
-            // Inicializar las colecciones antes de eliminar
             Hibernate.initialize(routine.getExercises());
             routineRepository.deleteById(id);
         }
@@ -76,28 +77,30 @@ public class RoutineService {
         if (op.isPresent()) {
             Routine routine = op.get();
 
-            if (updates.containsKey("name")) {
+            if (updates.containsKey("name") && updates.get("name") != null) {
                 routine.setName((String) updates.get("name"));
             }
-            if (updates.containsKey("description")) {
+            if (updates.containsKey("description") && updates.get("description") != null) {
                 routine.setDescription((String) updates.get("description"));
             }
-            if (updates.containsKey("difficulty")) {
+            if (updates.containsKey("difficulty") && updates.get("difficulty") != null) {
                 routine.setDifficulty((String) updates.get("difficulty"));
             }
-            if (updates.containsKey("trainerId")) {
+            if (updates.containsKey("trainerId") && updates.get("trainerId") != null) {
                 Long tId = Long.valueOf(updates.get("trainerId").toString());
                 trainerRepository.findById(tId).ifPresent(routine::setTrainer);
             }
-            if (updates.containsKey("exerciseIds")) {
+            if (updates.containsKey("exerciseIds") && updates.get("exerciseIds") != null) {
                 List<?> rawIds = (List<?>) updates.get("exerciseIds");
                 List<Long> ids = rawIds.stream()
-                        .map(Object::toString)
-                        .map(Long::valueOf)
-                        .toList();
+                        .map(idObj -> Long.valueOf(idObj.toString()))
+                        .collect(Collectors.toList());
+                List<Exercise> exercises = exerciseRepository.findAllById(ids);
 
-                routine.setExercises(exerciseRepository.findAllById(ids));
+                routine.setExercises(new ArrayList<>(exercises));
             }
+
+
             return routineRepository.save(routine);
         }
         return null;
