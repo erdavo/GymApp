@@ -94,10 +94,20 @@
                     <div class="card-actions">
                         <a href="/editExercise/{{id}}" class="card-button btn-edit">
                             <i class="fas fa-edit"></i> Edit
-                        </a> <a href="javascript:void(0)" class="card-button btn-delete"
-                            onclick="showDeleteModal('/exercises/delete/{{id}}')">
+                        </a>
+
+                        {{#hasRoutines}}
+                        <div class="card-button btn-delete disabled" title="This exercise is part of a routine and cannot be deleted.">
+                            <i class="fas fa-trash"></i> Delete
+                        </div>
+                        {{/hasRoutines}}
+
+                        {{^hasRoutines}}
+                        <a href="javascript:void(0)" class="card-button btn-delete"
+                           onclick="showDeleteModal('/exercises/delete/{{id}}')">
                             <i class="fas fa-trash"></i> Delete
                         </a>
+                        {{/hasRoutines}}
                     </div>
                 </div>
             </div>
